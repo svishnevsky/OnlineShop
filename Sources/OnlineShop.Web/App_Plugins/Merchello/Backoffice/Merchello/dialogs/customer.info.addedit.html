@@ -1,0 +1,29 @@
+<div class="umb-panel merchello-side-panel" ng-controller="Merchello.Customer.Dialogs.CustomerInfoEditController">
+    <div class="umb-modalcolumn-header">
+        <h4><localize key="merchelloCustomers_customerInformation" /></h4>
+    </div>
+    <form name="editInfoForm" id="editInfoForm">
+        <div class="umb-panel-body with-header with-footer">
+            <div class="form-group row-fluid">
+                <label for="firstName"><localize key="merchelloCustomers_firstName" />:</label>
+                <input name="firstName" type="text" class="span12" data-ng-model="dialogData.firstName"  />
+                <label for="lastName"><localize key="merchelloCustomers_lastName" />:</label>
+                <input name="lastName" type="text" class="span12" data-ng-model="dialogData.lastName" />
+                <label for="email">*<localize key="merchelloCustomers_email" />:</label>
+                <div class="error" data-ng-show="editInfoForm.email.$invalid && wasFormSubmitted"><localize key="merchelloCustomers_emailRequired" /></div>
+                <input name="email" type="email" class="span12" data-ng-model="dialogData.email" required />
+            </div>
+        </div>
+        <div class="umb-panel-footer">
+            <div class="umb-el-wrap umb-panel-buttons">
+                <div class="btn-toolbar umb-btn-toolbar pull-right">
+                    <!-- ACTION: Cancel -->
+                    <a href data-ng-click="close()" class="btn btn-link"><localize key="general_cancel"></localize></a>
+                    <!-- ACTION: Submit DialogData -->
+                    <button class="btn btn-primary" data-ng-click="save()"><localize key="buttons_save" /></button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
