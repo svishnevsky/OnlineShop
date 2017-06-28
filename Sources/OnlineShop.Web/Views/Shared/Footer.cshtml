@@ -1,0 +1,50 @@
+﻿@inherits Merchello.Web.Mvc.MerchelloTemplatePage
+
+@using Merchello.Core.Configuration
+
+<!-- Start footer-->
+<footer class="g_wrapper">
+    <div class="content">
+        <div id="foot_left">
+            <img src="/images/paymentproviders.png" />
+            <div />
+        </div>
+    </div>
+
+    <!-- Start social links-->
+    <div id="shares">
+        <a target="_blank" href="#">
+            <img src="/images/F.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/Gplus.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/T.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/Instagram.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/Tumblr.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/YT.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/Vkontakte.png" />
+        </a><a target="_blank" href="#">
+            <img src="/images/Pinterest.png" />
+        </a>
+    </div>
+    <!-- End social links-->
+    <!-- Start subscribe form-->
+    <div class="form subscribe">
+        <h2 class="w_full">&copy; 2017@(DateTime.Now.Year > 2017 ? $" - {DateTime.Now.Year}" : string.Empty) ИП Волченко Ирина Константиновна</h2>
+    </div>
+    <!-- End subscribe form-->
+    <!-- Start footer nav-->
+    <nav class="footer-nav">
+        @if (!CurrentCustomer.IsAnonymous)
+        {
+            @Html.ActionLink("Выйти", "Logout", "CustomerMembership", new { area = "FastTrack", redirectId = Model.Content.Id }, null)
+        }
+    </nav>
+    <!-- End footer nav-->
+
+</footer>
+<!-- End footer-->

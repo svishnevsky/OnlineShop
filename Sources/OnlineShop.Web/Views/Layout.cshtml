@@ -1,0 +1,82 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits UmbracoTemplatePage
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@Umbraco.Field("pageTitle") | Irene Italiano</title>
+    <meta name="keywords" content="@Umbraco.Field("metaKeywords", recursive: true)" />
+    <meta name="description" content="@Umbraco.Field("metaDescription", recursive: true)" />
+    <link href="/images/large.png" rel="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+</head>
+
+
+<body class="home">
+	<!--[if lt IE 7]><p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+    <!-- Start header-->
+		   @Html.Partial("Header")
+    @RenderBody()
+
+    <div class="wide_bg"></div>
+
+    @Html.Partial("Footer")
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $(".min_block .trigger").click(function (e) {
+                $(this).parents(".min_block").toggleClass("active");
+            });
+
+            jQuery.validator.setDefaults({
+                onfocusout: function (element) { $(element).valid(); },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    element.after(error);
+                }
+            });
+
+            $.validator.addMethod("regex", function (value, element, regexpr) {
+                return new RegExp(regexpr).test(value);
+            });
+
+            $("form").validate();
+        });
+
+        jQuery.extend(jQuery.validator.messages, {
+            required: "Обязательное поле.",
+            remote: "Проверьте ввод.",
+            email: "Неверный формат email-адреса.",
+            url: "Неверный формат URL.",
+            date: "Неверный формат даты.",
+            dateISO: "Неверный формат даты (ISO).",
+            number: "Неверный формат номера.",
+            digits: "Допускаются только числа.",
+            creditcard: "Неверный номер карты.",
+            equalTo: "Значения не совпадают.",
+            accept: "Неподходящее значение.",
+            maxlength: jQuery.validator.format("Количество символов не может превыщать {0}."),
+            minlength: jQuery.validator.format("Количество символов должно быть не менее {0}."),
+            rangelength: jQuery.validator.format("Количество симоволов должно быть от {0} до {1}."),
+            range: jQuery.validator.format("Значение должно быть между {0} и {1}."),
+            max: jQuery.validator.format("Значение не может превышать {0}."),
+            min: jQuery.validator.format("Значение не может быть меньше {0}."),
+            regex: "Недопустимое значение."
+        });
+    </script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

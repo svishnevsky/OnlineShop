@@ -1,0 +1,38 @@
+﻿@inherits Merchello.Web.Mvc.MerchelloTemplatePage
+@using Merchello.Core.Models
+@using Merchello.Web
+
+@{
+}
+
+<header class="g_wrapper">
+    <div class="content">
+        <span class="free_ship_head display-block">Бесплатная доставка от 70 Руб.</span>
+        <a href="/" class="logo">
+            <img src="/images/logo.png" alt="BALR" />
+        </a>
+
+        <!-- Start menu-->
+        <a href="#" class="nav_trigger">Меню</a>
+        <div class="display-block">
+            <nav class="menu_b">
+                <a href="/" class="burgundy">Каталог</a>
+                <a href="blog.html" class="burgundy">Условия заказа</a>
+                <a href="blog.html" class="burgundy">О нас</a>
+                @if (CurrentCustomer.IsAnonymous)
+                {
+                    <a href="/" class="burgundy">Войти</a>
+                }
+                else
+                {
+                    var customer = (ICustomer)CurrentCustomer;
+                    <a href="/" class="burgundy">
+                        @customer.FirstName @customer.LastName
+                    </a>
+                }
+                <a href="/" class="burgundy cart"><i class="ico"></i><span id="qty-total-cart">@CurrentCustomer.Basket().TotalQuantityCount</span></a>
+            </nav>
+        </div>
+        <!-- End menu-->
+    </div>
+</header>
