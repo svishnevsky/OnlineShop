@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/config
+/packages
+/Sources/OnlineShop.Web/bin
+/Sources/OnlineShop.Web/obj/Debug
