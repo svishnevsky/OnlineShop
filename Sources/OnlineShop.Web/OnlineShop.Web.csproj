@@ -352,9 +352,16 @@
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="webpack.config.js" />
+    <Content Include="wwwroot\app\actions\shipment.js" />
+    <Content Include="wwwroot\app\actions\types.js" />
+    <Content Include="wwwroot\app\components\App.jsx" />
+    <Content Include="wwwroot\app\components\Footer.jsx" />
+    <Content Include="wwwroot\app\components\Header.jsx" />
+    <Content Include="wwwroot\app\containers\HeaderContainer.js" />
     <Content Include="wwwroot\app\containers\Root.jsx" />
     <Content Include="wwwroot\app\index.jsx" />
     <Content Include="wwwroot\app\reducers\rootReducer.js" />
+    <Content Include="wwwroot\app\reducers\shipment.js" />
     <Content Include="wwwroot\app\store\configureStore.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -450,8 +457,6 @@
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\app\actions\" />
-    <Folder Include="wwwroot\app\components\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,10 +1,19 @@
-﻿@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-	Layout = "Layout.cshtml";
+    Layout = "Layout.cshtml";
 }
-
 
 @Html.Partial("Header")
 
 <div class="wide_bg"></div>
 @Html.Partial("Footer")
+
+@section Scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            shipment: {
+                freeMinPrice: @Umbraco.Field("freeMinPrice")
+            }
+        };
+    </script>
+}
