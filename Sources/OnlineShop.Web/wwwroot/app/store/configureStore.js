@@ -1,4 +1,4 @@
-﻿import createHistory from 'history/createBrowserHistory';
+﻿import createHistory from 'history/createHashHistory';
 import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers/rootReducer';

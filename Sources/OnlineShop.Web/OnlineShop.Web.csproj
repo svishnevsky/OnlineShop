@@ -357,6 +357,7 @@
     <Content Include="wwwroot\app\components\App.jsx" />
     <Content Include="wwwroot\app\components\Footer.jsx" />
     <Content Include="wwwroot\app\components\Header.jsx" />
+    <Content Include="wwwroot\app\components\TopMenu.jsx" />
     <Content Include="wwwroot\app\containers\HeaderContainer.js" />
     <Content Include="wwwroot\app\containers\Root.jsx" />
     <Content Include="wwwroot\app\index.jsx" />
@@ -446,7 +447,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\underscore.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>

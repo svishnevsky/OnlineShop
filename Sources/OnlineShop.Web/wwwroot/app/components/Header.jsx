@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import TopMenu from './TopMenu.jsx'
 
 export default class Header extends Component {
     render() {
@@ -10,6 +11,7 @@ export default class Header extends Component {
                     <Link to='/' className='logo'>
                         <img src='/images/logo.png' alt='BALR' />
                     </Link>
+                    <TopMenu/>
                 </div>
             </header>
         )
