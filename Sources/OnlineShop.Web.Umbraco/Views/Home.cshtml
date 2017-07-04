@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Layout.cshtml";
+    var mediaId = Umbraco.Field("banner").ToString();
+    var image = Umbraco.TypedMedia(mediaId);
+}
+
+<div id="app-root"></div>
+
+@section Scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            shipment: {
+                freeMinPrice: @Umbraco.Field("freeMinPrice")
+            },
+            banner: {
+                url: '@image.Url',
+                title: '@image.GetPropertyValue("title")'
+            },
+            auth: {
+                name: @(Html.Raw(User.Identity.IsAuthenticated ? $"'{ApplicationContext.Services.MemberService.GetByUsername(User.Identity.Name).GetValue<string>("firstName")}'" : "null")),
+                login: { isFetching: false, success: true },
+                register: {}
+            }
+        };
+    </script>
+    <script type="text/javascript" src="~/wwwroot/dist/bundle.js"></script>
+}

@@ -2,10 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/config
+/.vs/
 /packages
-/Sources/OnlineShop.Web/bin
-/Sources/OnlineShop.Web/obj/Debug
-/Sources/OnlineShop.Web/App_Data
-/Sources/OnlineShop.Web/node_modules
-/Sources/OnlineShop.Web/wwwroot/dist/bundle.js
+**/bin
+**/obj/
+**/node_modules
+/Sources/OnlineShop.Web.Umbraco/wwwroot/dist/bundle.js
+/Sources/OnlineShop.Web.Umbraco/App_Data
