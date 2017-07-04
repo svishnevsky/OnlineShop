@@ -7,5 +7,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const headerContainer = connect(mapStateToProps)(Header)
-export default headerContainer;
+const header = connect(mapStateToProps)(Header)
+export default header;

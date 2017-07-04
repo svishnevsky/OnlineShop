@@ -547,98 +547,40 @@ footer {
     display: block;
 }
 
-    footer .content {
-        display: block;
-        width: 900px;
-        position: relative;
-        z-index: 1;
-        margin: 0 auto;
-        padding: 0 20px;
+footer .content {
+    position: relative;
+    top: 10px;
+    display: block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+    footer .content > div {
+        display: inline-block;
+        margin: 0 10px;
     }
 
-        footer .content #foot_left img {
-            float: left;
-            margin-bottom: 10px;
-            max-height: 36px;
-            max-width: 136px;
-        }
-
-        footer .content #foot_left div {
-            margin-top: -7px;
-            display: inline-table;
-        }
-
-    footer .subscribe {
-        float: right;
-        width: 280px;
-        margin: 6px 0 0;
+    footer .content > div img {
+        vertical-align: middle;
     }
 
-        footer .subscribe h2 {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: #000;
-            margin: 0 0 4px;
+        footer .content > div img.payment-methods {
+            width: 134px;
         }
 
-        footer .subscribe .input {
-            width: 170px;
-            font-size: 10px;
-            float: left;
-        }
-
-        footer .subscribe .button {
-            width: 89px;
-            background: #f8f8f8;
-        }
-
-    footer .share {
-        position: absolute;
-        top: 31px;
-        left: 400px;
+    footer .content a.share {
+        display: inline-block;
+    }
+    
+    footer .content a.share img {
+        max-height: 20px;
+        width: 20px;
+        margin: 0 10px;
     }
 
-        footer .share a {
-            float: left;
-            margin-right: 39px;
-            text-indent: -9999em;
-            background-image: url(../images/sprite.png);
-        }
-
-        footer .share .twitter {
-            width: 22px;
-            height: 17px;
-            margin-top: 2px;
-            background-position: 0 -38px;
-        }
-
-            footer .share .twitter:HOVER {
-                background-position: 0 -60px;
-            }
-
-        footer .share .facebook {
-            width: 10px;
-            height: 21px;
-            background-position: -23px -38px;
-        }
-
-            footer .share .facebook:HOVER {
-                background-position: -23px -60px;
-            }
-
-        footer .share .gplus {
-            width: 24px;
-            height: 21px;
-            background-position: -34px -38px;
-        }
-
-            footer .share .gplus:HOVER {
-                background-position: -34px -60px;
-            }
-
-    footer nav {
-        float: left;
-    }
+footer nav {
+    float: left;
+}
 
 header {
     font-family: verdana;
@@ -651,6 +593,7 @@ header {
     background: #fff;
     border-bottom: 1px solid #c9c9c9;
     display: block;
+    height: 92px;
 }
 
     header .content {
@@ -1988,7 +1931,7 @@ select {
         .product_info .price span {
             margin-right: 24px;
             font-size: 14px;
-                color: #880016;
+            color: #880016;
         }
 
             .product_info .price span.old {
@@ -2830,7 +2773,7 @@ section.product {
         border-top: 1px #ddd solid;
         font-size: 13px;
         text-indent: 5px;
-    height: 120px;
+        height: 120px;
         overflow-y: auto;
     }
 
@@ -3032,21 +2975,6 @@ section.hashbalr {
     right: 0;
     margin-top: 10px;
 }
-
-#shares {
-    left: 235px;
-    width: 375px;
-    position: absolute;
-    top: 5px;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-    #shares img {
-        max-height: 20px;
-        margin-right: 20px;
-        vertical-align: middle;
-    }
 
 #qty_chosen {
     margin: 49px 0 0 0;
@@ -4182,10 +4110,10 @@ button[disabled] {
     background-color: #777;
 }
 
-button[disabled]:hover {
-    cursor: not-allowed;
-    background-color: #777;
-}
+    button[disabled]:hover {
+        cursor: not-allowed;
+        background-color: #777;
+    }
 
 input[disabled] {
     cursor: not-allowed;
