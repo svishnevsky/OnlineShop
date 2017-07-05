@@ -1,8 +1,12 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Merchello.Web
+@using Newtonsoft.Json;
 @{
     Layout = "Layout.cshtml";
     var mediaId = Umbraco.Field("banner").ToString();
     var image = Umbraco.TypedMedia(mediaId);
+    var merchelloHelper = new MerchelloHelper();
+    var collections = merchelloHelper.Collections.Product.GetRootLevelCollections().Select(c => new { key = c.Key, name = c.Name });
 }
 
 <div id="app-root"></div>
@@ -21,6 +25,9 @@
                 name: @(Html.Raw(User.Identity.IsAuthenticated ? $"'{ApplicationContext.Services.MemberService.GetByUsername(User.Identity.Name).GetValue<string>("firstName")}'" : "null")),
                 login: {},
                 register: {}
+            },
+            catalog: {
+                categories: @(Html.Raw(JsonConvert.SerializeObject(collections)))
             }
         };
     </script>
