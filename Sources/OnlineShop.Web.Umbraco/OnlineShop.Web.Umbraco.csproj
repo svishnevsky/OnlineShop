@@ -3052,12 +3052,14 @@
     <Content Include="wwwroot\app\components\Header.jsx" />
     <Content Include="wwwroot\app\components\Banner.jsx" />
     <Content Include="wwwroot\app\components\TopMenu.jsx" />
+    <Content Include="wwwroot\app\containers\auth\auth.js" />
     <Content Include="wwwroot\app\containers\auth\login.js" />
     <Content Include="wwwroot\app\containers\auth\register.js" />
     <Content Include="wwwroot\app\containers\banner.js" />
     <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />
     <Content Include="wwwroot\app\containers\Root.jsx" />
+    <Content Include="wwwroot\app\containers\topMenu.js" />
     <Content Include="wwwroot\app\index.jsx" />
     <Content Include="wwwroot\app\reducers\auth.js" />
     <Content Include="wwwroot\app\reducers\rootReducer.js" />

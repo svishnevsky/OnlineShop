@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import TopMenu from './TopMenu.jsx'
+import TopMenu from '../containers/topMenu'
 
 export default class Header extends Component {
     render() {

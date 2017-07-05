@@ -20,6 +20,7 @@ export default class Login extends Component {
         return (
             <section className='account clearfix'>
                 <h1 className='page_h'>Авторизация</h1>
+                {!this.props.error ? null : <div className='warning'>Пользователь с таким e-mail адресом не существует или неверный пароль.</div>}
                 <BlockUi tag='div' className='tab_content' blocking={this.props.loading}>
                     <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)} className='form'>
                         <label className='label' htmlFor='username'>Email</label>

@@ -4,8 +4,8 @@ import { sendLogin } from '../../actions/auth'
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: state.auth.login.isFetching,
-        success: state.auth.login.success
+        loading: state.auth.login.loading,
+        error: state.auth.login.error
     }
 }
 

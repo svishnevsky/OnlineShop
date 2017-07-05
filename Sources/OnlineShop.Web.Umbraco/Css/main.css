@@ -794,6 +794,19 @@ input {
         padding: 0;
     }
 
+.av-block-ui-container {
+    text-align: center;
+    background: rgba(0,0,0,0.15);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.av-block-ui-overlay {
+    height: 48%;
+}
+
 .display-block {
     display: block;
 }
@@ -1018,7 +1031,6 @@ select {
 }
 
 .g_black {
-    float: left;
     width: 100%;
     position: relative;
     cursor: pointer;
@@ -1148,11 +1160,7 @@ select {
         text-align: center;
         margin-bottom: 10px;
     }
-
-.form {
-    float: left;
-}
-
+    
     .form .label {
         float: left;
         width: 100%;
@@ -1203,8 +1211,7 @@ select {
 
     .form .input {
         height: 20px;
-        font-size: 10px;
-        line-height: 20px;
+        font-size: 12px;
         color: #a3a3a3;
         border: 1px solid #dfdfdf;
         background: #fff;
@@ -1670,10 +1677,11 @@ select {
     .account .tab_content .form .input {
         width: 100%;
         margin-bottom: 3px;
+        box-sizing: border-box
     }
 
     .account .tab_content .form button {
-        margin: 10px 7px 25px;
+        margin: 10px 0 25px;
     }
 
 .account .orders .b_order {
@@ -1696,7 +1704,6 @@ select {
     }
 
 .account form .informer {
-    float: left;
     width: 100%;
     position: relative;
     margin-top: -9px;
@@ -2402,12 +2409,12 @@ section.lightBox {
 
         .g_wrapper.auth section {
             display: inline-block;
-            width: 250px;
+            width: 300px;
             vertical-align: top;
         }
 
             .g_wrapper.auth section:first-child {
-                margin-right: 45px;
+                margin-right: 30px;
             }
 
             .g_wrapper.auth section:last-child {
@@ -2909,7 +2916,7 @@ section.hashbalr {
     max-width: 900px;
     margin: 10px auto;
     padding: 10px;
-    background: #FFD1D1 url(../images/warning.png) 10px center no-repeat;
+    background: #FFD1D1;
     border: 1px solid #F8ACAC;
 }
 

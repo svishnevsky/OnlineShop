@@ -19,7 +19,7 @@
             },
             auth: {
                 name: @(Html.Raw(User.Identity.IsAuthenticated ? $"'{ApplicationContext.Services.MemberService.GetByUsername(User.Identity.Name).GetValue<string>("firstName")}'" : "null")),
-                login: { isFetching: false, success: true },
+                login: {},
                 register: {}
             }
         };

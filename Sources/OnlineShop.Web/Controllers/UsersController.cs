@@ -1,7 +1,6 @@
 ﻿using OnlineShop.Web.Models;
 using System;
 using System.Text;
-using System.Web;
 using System.Web.Http;
 using System.Web.Security;
 using Umbraco.Core.Models;
@@ -34,8 +33,7 @@ namespace OnlineShop.Web.Controllers
 
                 member = Members.GetByUsername(userName);
             }
-
-            HttpContext.Current.Response.AppendHeader("Set-Cookie", "*");
+            
             return Ok(new { name = $"{member.GetPropertyValue<string>("firstName")}" });
         }
 

@@ -7,11 +7,11 @@ const requestLogin = () => {
     }
 }
 
-const receiveLogin = (data) => {
+const receiveLogin = (name, error) => {
     return {
         type: types.AUTH_RECEIVE_LOGIN,
-        name: data.body.name,
-        success: data.success
+        name: name,
+        error: error
     }
 }
 
@@ -36,13 +36,13 @@ export function sendLogin(username, password) {
             .then(response => {
                 if (!response.ok)
                 {
-                    dispatch(receiveLogin({ success: false }));
+                    dispatch(receiveLogin(undefined, 'Неверный логин или пароль.'));
                     return;
                 }
 
                 response.json()
                     .then(data => {
-                        dispatch(receiveLogin({ success: true, body: data }));
+                        dispatch(receiveLogin(data.name));
                     });
             });
     }
