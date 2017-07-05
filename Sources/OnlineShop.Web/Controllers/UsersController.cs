@@ -62,8 +62,11 @@ namespace OnlineShop.Web.Controllers
 
             switch (status)
             {
+                case MembershipCreateStatus.DuplicateUserName:
                 case MembershipCreateStatus.DuplicateEmail:
                     return BadRequest("Пользователь с таким email-адресом уже зарегистрирован.");
+                case MembershipCreateStatus.InvalidPassword:
+                    return BadRequest("Пароль слишком простой.");
                 case MembershipCreateStatus.Success:
                     var membership = ApplicationContext.Services.MemberService.GetByEmail(model.Email);
                     ApplicationContext.Services.MemberService.AssignRole(membership.Id, "Customers");
@@ -72,6 +75,15 @@ namespace OnlineShop.Web.Controllers
                 default:
                     return BadRequest("Произошла ошибка. Попробуйте снова");
             }
+        }
+
+        [HttpDelete]
+        [ActionName("Users")]
+        [Authorize]
+        public IHttpActionResult Logout()
+        {
+            Members.Logout();
+            return Ok();
         }
     }
 }

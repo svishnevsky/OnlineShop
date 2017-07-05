@@ -10,23 +10,30 @@ const requestLogin = () => {
 const receiveLogin = (name, error) => {
     return {
         type: types.AUTH_RECEIVE_LOGIN,
-        name: name,
-        error: error
+        name,
+        error
     }
 }
 
-//const requestRegister = () => {
-//    return {
-//        type: types.AUTH_REQUEST_REGISTER
-//    }
-//}
+const receiveLogout = () => {
+    return {
+        type: types.AUTH_RECEIVE_LOGOUT
+    }
+}
 
-//const receiveRegister = (data) => {
-//    return {
-//        type: types.AUTH_RECEIVE_REGISTER,
-//        name: data.name
-//    }
-//}
+const requestRegister = () => {
+    return {
+        type: types.AUTH_REQUEST_REGISTER
+    }
+}
+
+const receiveRegister = (name, errors) => {
+    return {
+        type: types.AUTH_RECEIVE_REGISTER,
+        name,
+        errors
+    }
+}
 
 export function sendLogin(username, password) {
     return function (dispatch) {
@@ -43,6 +50,35 @@ export function sendLogin(username, password) {
                 response.json()
                     .then(data => {
                         dispatch(receiveLogin(data.name));
+                    });
+            });
+    }
+}
+
+export function logout() {
+    return function (dispatch) {
+        return fetch('/umbraco/api/client/users', { method: 'DELETE', credentials: "same-origin" })
+            .then(response => {
+                if (response.ok) {
+                    dispatch(receiveLogout());
+                }
+            });
+    }
+}
+
+export function sendRegister(user) {
+    return function (dispatch) {
+        dispatch(requestRegister());
+        return fetch('/umbraco/api/client/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: "same-origin", body: JSON.stringify(user) })
+            .then(response => {
+                response.json()
+                    .then(data => {
+                        if (!response.ok) {
+                            dispatch(receiveRegister(undefined, data.errors || [data.Message]));
+                            return;
+                        } else {
+                            dispatch(receiveRegister(data.name));
+                        }
                     });
             });
     }

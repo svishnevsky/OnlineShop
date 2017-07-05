@@ -578,10 +578,6 @@ footer {
                 margin: 0 10px;
             }
 
-    footer nav {
-        float: left;
-    }
-
 header {
     font-family: verdana;
     font-size: inherit;
@@ -2480,17 +2476,24 @@ section.lightBox {
     }
 
 .footer-nav {
-    position: absolute;
-    top: 32px;
-    left: 215px;
     text-align: center;
-    width: 400px;
+    margin-top: 10px;
 }
 
-    .footer-nav a {
-        font-size: 10px;
-        margin-right: 10px;
+    .footer-nav button {
+        font-size: 12px;
+        padding: 5px 12px;
+        background-color: #880016;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        display: block;
+        margin: 0 auto;
+        width: 100px;
     }
+
+        .footer-nav button:hover {
+            transform: scale(1.05);
+        }
 
 #paymentInstructions {
     padding: 10px;

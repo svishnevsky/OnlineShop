@@ -1,7 +1,16 @@
 ﻿import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 
 export default class Footer extends Component {
+    constructor(props) {
+        super(props);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.logout();
+    }
+
     render() {
         return (
             <footer className='g_wrapper'>
@@ -37,7 +46,7 @@ export default class Footer extends Component {
                 </div>
 
                 <nav className='footer-nav'>
-                    {!this.props.user ? null : <Link to='/logout'>Выйти</Link>}
+                    {!this.props.authenticated ? null : <button onClick={this.handleLogout}>Выйти</button>}
                 </nav>
 
             </footer>
