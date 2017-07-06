@@ -10,6 +10,14 @@ const catalog = (state = {}, action) => {
             return Object.assign({}, state, {
                 products: action.products
             });
+        case types.CATALOG_PRODUCT_REQUEST:
+            return Object.assign({}, state, {
+                product: undefined
+            });
+        case types.CATALOG_PRODUCT_RECEIVE:
+            return Object.assign({}, state, {
+                product: action.product
+            });
         default:
             return state;
     }

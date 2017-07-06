@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { formatPrice } from '../../utils/common'
+import BlockUi from 'react-block-ui'
+import { formatPrice, getCropUrl } from '../../utils/common'
 
 export default class Catalog extends Component {
     render() {
@@ -13,16 +14,16 @@ export default class Catalog extends Component {
                             {this.props.categories.map(c => <li key={c.key} className={this.props.active === c.name ? 'active' : null}><Link to={`/catalog/${c.name}`}>{c.name}<i className='ico'></i></Link></li>)}
                         </ul>
                     </div>
-                    <ul className='products'>
+                    <BlockUi tag='ul' className='products' blocking={!this.props.products}>
                         {!this.props.products ? null : this.props.products.map(p => <li key={p.key}>
                             <Link to={this.props.active ? `/catalog/${this.props.active}/${p.name}` : `/catalog/${p.categories[0].name}/${p.name}`}>
-                                <img alt={p.images[0].name} className='pull_left lazy' src={`${p.images[0].url}?anchor=center&mode=crop&width=200&height=200`} />
+                                <img alt={p.images[0].name} className='pull_left lazy' src={getCropUrl(p.images[0].url, 200)} />
                                 <span>{p.name}</span>
                                 <span>{formatPrice(p.price)}</span>
                             </Link>
-                            <div className="clearfix"></div>
+                            <div className='clearfix'></div>
                         </li>)}
-                    </ul>
+                    </BlockUi>
                 </section>
             </article>
         );

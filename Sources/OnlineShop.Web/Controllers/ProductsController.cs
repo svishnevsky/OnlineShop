@@ -31,5 +31,30 @@ namespace OnlineShop.Web.Controllers
                 .ToList();
             return Ok(new { products });
         }
+
+        [HttpGet]
+        [ActionName("Products")]
+        public IHttpActionResult GetProduct(Guid key)
+        {
+            var helper = new MerchelloHelper();
+            var p = helper.Query.Product.GetByKey(key);
+            var product = new
+            {
+                key = p.Key,
+                name = p.Name,
+                price = p.Price,
+                categories = p.AsProductContent().Collections().Select(c => new { name = c.Name, key = c.Key }),
+                images = p.DetachedContents?
+                .FirstOrDefault()?
+                .DetachedDataValues
+                .Where(v => v.Key == "images")
+                .Select(i => Umbraco.TypedMedia(Convert.ToInt32(i.Value.Trim('"'))))
+                .SelectMany(i => i.ContentType.Alias == "Folder" ? i.Children.Select(x => new { url = x.Url, name = x.Name }) : new[] { new { url = i.Url, name = i.Name } })
+            };
+
+            return Ok(product);
+        }
     }
+
+
 }

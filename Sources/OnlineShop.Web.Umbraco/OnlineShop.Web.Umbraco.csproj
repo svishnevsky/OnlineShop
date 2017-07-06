@@ -3050,6 +3050,8 @@
     <Content Include="wwwroot\app\components\auth\Login.jsx" />
     <Content Include="wwwroot\app\components\auth\Register.jsx" />
     <Content Include="wwwroot\app\components\catalog\Catalog.jsx" />
+    <Content Include="wwwroot\app\components\catalog\Product.jsx" />
+    <Content Include="wwwroot\app\components\catalog\ProductImages.jsx" />
     <Content Include="wwwroot\app\components\Footer.jsx" />
     <Content Include="wwwroot\app\components\Header.jsx" />
     <Content Include="wwwroot\app\components\Banner.jsx" />
@@ -3058,6 +3060,7 @@
     <Content Include="wwwroot\app\containers\auth\login.js" />
     <Content Include="wwwroot\app\containers\auth\register.js" />
     <Content Include="wwwroot\app\containers\banner.js" />
+    <Content Include="wwwroot\app\containers\catalog\product.js" />
     <Content Include="wwwroot\app\containers\catalog\catalog.js" />
     <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />

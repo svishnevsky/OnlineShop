@@ -15,6 +15,19 @@ export const receiveProducts = (products) => {
     }
 }
 
+export const receiveProduct = (product) => {
+    return {
+        type: types.CATALOG_PRODUCT_RECEIVE,
+        product
+    }
+}
+
+export const requestProduct = () => {
+    return {
+        type: types.CATALOG_PRODUCT_REQUEST
+    }
+}
+
 export function fetcProducts() {
     return function (dispatch) {
         return fetch('/umbraco/api/client/products')
@@ -22,6 +35,19 @@ export function fetcProducts() {
                 response.json()
                     .then(data => {
                         dispatch(receiveProducts(data.products));
+                    });
+            });
+    }
+}
+
+export function fetchProduct(key) {
+    return function (dispatch) {
+        dispatch(requestProduct());
+        return fetch(`/umbraco/api/client/products?key=${key}`)
+            .then(response => {
+                response.json()
+                    .then(data => {
+                        dispatch(receiveProduct(data));
                     });
             });
     }

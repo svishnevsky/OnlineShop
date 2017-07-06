@@ -2396,6 +2396,7 @@ section.lightBox {
     clear: both;
     position: relative;
     z-index: 1;
+    padding-bottom: 10px;
 }
 
     .g_wrapper.auth {
