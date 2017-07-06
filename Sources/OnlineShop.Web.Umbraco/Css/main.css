@@ -1156,86 +1156,86 @@ select {
         text-align: center;
         margin-bottom: 10px;
     }
-    
-    .form .label {
-        float: left;
-        width: 100%;
-        position: relative;
-        font-size: 10px;
-        text-transform: uppercase;
-        color: #7c7c7c;
-        margin: 0 0 2px;
+
+.form .label {
+    float: left;
+    width: 100%;
+    position: relative;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #7c7c7c;
+    margin: 0 0 2px;
+}
+
+.form .button {
+    float: left;
+    width: 100%;
+    position: relative;
+    font-size: 11px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border: 1px solid #dfdfdf;
+    border-left: none;
+    background: #f8f8f8;
+}
+
+    .form .button:HOVER {
+        color: #fff;
+        background: #ac3939;
+        border-color: #ac3939;
     }
 
-    .form .button {
-        float: left;
-        width: 100%;
-        position: relative;
-        font-size: 11px;
-        line-height: 20px;
-        text-transform: uppercase;
-        border: 1px solid #dfdfdf;
-        border-left: none;
-        background: #f8f8f8;
-    }
+.form .helper {
+    float: left;
+    width: 100%;
+    position: relative;
+    font-size: 10px;
+    text-align: center;
+    color: #7c7c7c;
+    margin: -9px 0 12px;
+}
 
-        .form .button:HOVER {
-            color: #fff;
-            background: #ac3939;
-            border-color: #ac3939;
-        }
-
-    .form .helper {
-        float: left;
-        width: 100%;
-        position: relative;
+    .form .helper * {
         font-size: 10px;
         text-align: center;
         color: #7c7c7c;
-        margin: -9px 0 12px;
     }
 
-        .form .helper * {
-            font-size: 10px;
-            text-align: center;
-            color: #7c7c7c;
-        }
-
-        .form .helper a:HOVER {
-            color: #ac3939;
-        }
-
-    .form .input {
-        height: 20px;
-        font-size: 12px;
-        color: #a3a3a3;
-        border: 1px solid #dfdfdf;
-        background: #fff;
-        padding: 0 7px;
+    .form .helper a:HOVER {
+        color: #ac3939;
     }
 
-        .form .input:hover {
-            color: #000;
-            border-color: #000;
-        }
+.form .input {
+    height: 20px;
+    font-size: 12px;
+    color: #a3a3a3;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    padding: 0 7px;
+}
 
-        .form .input:focus {
-            color: #000;
-            border-color: #000;
-        }
-
-        .form .input.error {
-            border-color: red;
-        }
-
-    .form .helper.error {
-        color: red;
+    .form .input:hover {
+        color: #000;
+        border-color: #000;
     }
 
-    .form select {
-        font-size: 13px;
-        padding: 2px;
+    .form .input:focus {
+        color: #000;
+        border-color: #000;
     }
+
+    .form .input.error {
+        border-color: red;
+    }
+
+.form .helper.error {
+    color: red;
+}
+
+.form select {
+    font-size: 13px;
+    padding: 2px;
+}
 
 .checkbox_w {
     float: left;
@@ -2848,6 +2848,10 @@ section.product {
     z-index: 0;
     margin: 0 0 0 21px;
 }
+
+    .thumbs .thumbs_w a {
+        cursor: pointer;
+    }
 
 .thumbs li {
     float: left;
