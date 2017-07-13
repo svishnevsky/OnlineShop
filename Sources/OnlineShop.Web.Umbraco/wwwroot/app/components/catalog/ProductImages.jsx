@@ -21,7 +21,7 @@ export default class ProductImages extends Component {
     render() {
         return (
             <div className='product_img'>
-                <img id='mainImage' src={getCropUrl(this.props.images[0].url, 330)} className='headPhoto' data-zoom-image={this.props.images[0].url} alt={this.props.images[0].name} />
+                <img id='mainImage' height='330px' width='330px' src={getCropUrl(this.props.images[0].url, 330)} className='headPhoto' data-zoom-image={this.props.images[0].url} alt={this.props.images[0].name} />
                 <div id='gallery_01' className='thumbs'>
                     {this.props.images.map((img, index) =>
                         <a key={index} data-image={getCropUrl(img.url, 330)} data-zoom-image={img.url}>

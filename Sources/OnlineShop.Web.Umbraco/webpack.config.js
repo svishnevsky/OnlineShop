@@ -15,7 +15,11 @@ module.exports = {
         publicPath: '/wwwroot/dist/'
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']

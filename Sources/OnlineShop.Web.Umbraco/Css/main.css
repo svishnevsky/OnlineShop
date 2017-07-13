@@ -148,6 +148,10 @@ h6 {
     font-weight: normal;
 }
 
+a {
+    cursor: pointer;
+}
+
 p {
     font-family: verdana;
     font-size: inherit;
@@ -531,6 +535,10 @@ figcaption {
     font-family: verdana;
     font-size: inherit;
     display: block;
+}
+
+.trigger {
+    cursor: pointer;
 }
 
 footer {
@@ -1847,9 +1855,6 @@ select {
 
 .product_img {
     float: left;
-    width: 330px;
-    height: 400px;
-    border: none;
 }
 
     .product_img .img {
@@ -1881,7 +1886,7 @@ select {
 
 .product_info {
     float: right;
-    width: 340px;
+    width: 460px;
 }
 
     .product_info h1 {
@@ -2420,6 +2425,12 @@ section.lightBox {
                 padding-left: 30px;
                 border-left: 1px solid #c9c9c9;
             }
+
+    .g_wrapper .product .products li a span {
+        display: block;
+        text-align: center;
+        color: #880016;
+    }
 
 .go_back {
     height: 20px !important;
