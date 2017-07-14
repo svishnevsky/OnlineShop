@@ -1864,11 +1864,11 @@ select {
         height: 330px;
     }
 
-    .product_img .img img {
-        float: left;
-        width: 100%;
-        height: 100%;
-    }
+        .product_img .img img {
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
 
     .product_img .thumbs {
         float: left;
@@ -2758,48 +2758,54 @@ section.product {
     width: 810px;
 }
 
-.product .product-info ul.choice {
+.product .product_info ul.choice {
     margin-bottom: 5px;
 }
 
-    .product .product-info ul.choice li {
-        width: 51px;
+    .product .product_info ul.choice li {
         margin-right: 5px;
         font-size: 16px;
         text-align: center;
         text-indent: 0;
         cursor: pointer;
+        text-transform: none;
     }
 
-        .product .product-info ul.choice li.selected {
+        .product .product_info ul.choice li.selected {
             background-color: #ac3939;
         }
 
-        .product .product-info ul.choice li.disabled {
+        .product .product_info ul.choice li.disabled {
             background-color: #777;
             cursor: not-allowed;
         }
 
-    .product .product-info ul.choice.color li {
+    .product .product_info ul.choice.size li {
+        min-width: 50px;
+        display: inline;
+        padding: 3px;
+    }
+
+    .product .product_info ul.choice.color li {
         width: 25px;
         height: 25px;
         border: 1px #000 solid;
-        float: left;
+        display: inline-block;
     }
 
-        .product .product-info ul.choice.color li:hover {
+        .product .product_info ul.choice.color li:hover {
             border-color: #ac3939;
         }
 
-        .product .product-info ul.choice.color li.selected {
+        .product .product_info ul.choice.color li.selected {
             border: 3px #090 solid;
         }
 
-.product .product-info .description {
+.product .product_info .description {
     border: 1px #ddd solid;
 }
 
-    .product .product-info .description .header li {
+    .product .product_info .description .header li {
         float: left;
         font-size: 13px;
         padding: 5px 0;
@@ -2809,12 +2815,12 @@ section.product {
         cursor: pointer;
     }
 
-        .product .product-info .description .header li.active {
+        .product .product_info .description .header li.active {
             cursor: default;
             color: #000;
         }
 
-    .product .product-info .description .text {
+    .product .product_info .description .text {
         padding: 5px;
         border-top: 1px #ddd solid;
         font-size: 13px;

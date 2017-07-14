@@ -6,6 +6,7 @@ using System;
 using Newtonsoft.Json;
 using Umbraco.Core.Models;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace OnlineShop.Web.Controllers
 {
@@ -37,16 +38,51 @@ namespace OnlineShop.Web.Controllers
                 price = p.Price,
                 salePrice = p.SalePrice,
                 onSale = p.OnSale,
+                count = p.TotalInventoryCount,
+                trackCount = p.TrackInventory,
                 description = this.GetDetachedValue<string>(p, "description"),
                 categories = p.AsProductContent().Collections().Select(c => new { name = c.Name, key = c.Key }),
                 images = this.GetImages(Umbraco.TypedMedia(this.GetDetachedValue<int>(p, "images"))),
-                relatedProducts = this.GetDetachedValue<Guid[]>(p, "relatedProducts")
+                relatedProducts = this.GetDetachedValue<Guid[]>(p, "relatedProducts")?
                 .Select(helper.Query.Product.GetByKey)
                 .Select(this.MapProductListItem)
-                .ToList()
+                .ToList(),
+                variants = this.MapVariants(p),
+                options = p.ProductOptions?.Select(o => new { name = this.ToCamelCase(o.Name), choices = o.Choices.Select(c => new { name = c.Name, sku = c.Sku }) })
             };
 
             return Ok(product);
+        }
+
+        private IEnumerable<object> MapVariants(ProductDisplay product)
+        {
+            return product.ProductVariants?.Select(v => new
+            {
+                key = v.Key,
+                sku = v.Sku,
+                price = v.Price,
+                salePrice = v.SalePrice,
+                onSale = v.OnSale,
+                count = v.TotalInventoryCount,
+                trackCount = v.TrackInventory,
+                options = this.GetOptions(v.Attributes, product.ProductOptions)
+            });
+        }
+
+        private object GetOptions(IEnumerable<ProductAttributeDisplay> attributes, IEnumerable<ProductOptionDisplay> productOptions)
+        {
+            var options = new JObject();
+            foreach (var a in  attributes)
+            {
+                options.Add(this.ToCamelCase(productOptions.First(o => o.Key == a.OptionKey).Name), JToken.FromObject(new { name = a.Name, sku = a.Sku }));
+            }
+
+            return options;
+        }
+
+        private string ToCamelCase(string name)
+        {
+            return $"{Char.ToLowerInvariant(name[0])}{name.Substring(1)}";
         }
 
         private IEnumerable<object> GetImages(IPublishedContent publishedContent)
