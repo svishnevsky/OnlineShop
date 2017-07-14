@@ -1518,6 +1518,12 @@ select {
             border-color: #000;
         }
 
+        .min_block.preview:not(.active) .content {
+            display: block;
+            max-height: 64px;
+            overflow-y: hidden;
+        }
+
 .min_block_full ul {
     float: left;
     width: 100%;
@@ -1748,6 +1754,10 @@ select {
     margin-bottom: 10px;
     font-style: italic;
     font-weight: normal;
+}
+
+.blog ol {
+    list-style-type: decimal;
 }
 
 .checkout_form {
