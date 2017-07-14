@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export default class TopMenu extends Component {
     render() {
@@ -10,7 +10,7 @@ export default class TopMenu extends Component {
                     <Link to='/info/user-agreement' className='burgundy'>Условия заказа</Link>
                     <Link to='/info/about' className='burgundy'>О нас</Link>
                     {!this.props.username ? <Link to='/auth' className='burgundy'>Войти</Link> : <Link to='/account' className='burgundy'>{this.props.username}</Link>}
-                    <Link to='/cart' className='burgundy cart'><i className='ico'></i><span id='qty-total-cart'>{this.props.qty}</span></Link>
+                    <Link to='/basket' className='burgundy cart'><i className='ico'></i><span id='qty-total-cart'>{this.props.qty}</span></Link>
                 </nav>
             </div>
         );

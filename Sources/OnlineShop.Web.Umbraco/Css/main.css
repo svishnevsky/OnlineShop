@@ -847,10 +847,6 @@ input {
         padding: 15px 0;
     }
 
-        .shopping_bag .item select {
-            -webkit-appearance: none;
-        }
-
     .shopping_bag .legend {
         float: left;
         width: 100%;
@@ -897,6 +893,13 @@ input {
         .shopping_bag .products .legend {
             border: none;
         }
+
+    .shopping_bag .item .qty {
+        border: #9e9e9e solid 1px;
+        padding-right: 0;
+        margin-top: 3px;
+        border-radius: 5px;
+    }
 
     .shopping_bag .total {
         float: right;
@@ -1085,85 +1088,89 @@ select {
         border-color: #ac3939;
     }
 
-.bag .go_back {
-    float: left;
-    width: 100%;
-    position: relative;
-    width: 218px;
-    margin-bottom: 54px;
+.bag {
+    width: 730px;
 }
 
-    .bag .go_back:hover {
-        color: #fff;
-        background: #ac3939;
-        border-color: #ac3939;
-    }
-
-.bag .basics {
-    margin: 38px 0 26px;
-}
-
-    .bag .basics ul {
+    .bag .go_back {
         float: left;
         width: 100%;
         position: relative;
+        width: 218px;
+        margin-bottom: 54px;
     }
 
-    .bag .basics li {
-        border: none !important;
-        transition: all 0.3s ease-in-out;
+        .bag .go_back:hover {
+            color: #fff;
+            background: #ac3939;
+            border-color: #ac3939;
+        }
+
+    .bag .basics {
+        margin: 38px 0 26px;
+    }
+
+        .bag .basics ul {
+            float: left;
+            width: 100%;
+            position: relative;
+        }
+
+        .bag .basics li {
+            border: none !important;
+            transition: all 0.3s ease-in-out;
+            float: left;
+            width: 158px;
+            height: 158px;
+            margin-right: 20px;
+        }
+
+            .bag .basics li:hover {
+                border-color: #000;
+            }
+
+            .bag .basics li a {
+                float: left;
+                width: 100%;
+                height: 100%;
+            }
+
+            .bag .basics li img {
+                float: left;
+                width: 100%;
+                height: 100%;
+            }
+
+            .bag .basics li.last {
+                margin: 0;
+            }
+
+    .bag .estimate {
         float: left;
-        width: 158px;
-        height: 158px;
-        margin-right: 20px;
+        clear: both;
+        width: 50%;
     }
 
-        .bag .basics li:hover {
-            border-color: #000;
+        .bag .estimate h2 {
+            font-size: 14px;
+            text-transform: uppercase;
         }
 
-        .bag .basics li a {
-            float: left;
-            width: 100%;
-            height: 100%;
+        .bag .estimate .desc {
+            font-style: italic;
+            font-size: 12px;
+            margin: 4px 0 17px;
         }
 
-        .bag .basics li img {
-            float: left;
-            width: 100%;
-            height: 100%;
+        .bag .estimate .form {
+            width: 220px;
         }
 
-        .bag .basics li.last {
-            margin: 0;
+        .bag .estimate .input {
+            width: 204px;
+            text-align: center;
+            margin-bottom: 10px;
         }
-
-.bag .estimate {
-    float: left;
-    clear: both;
-    width: 50%;
-}
-
-    .bag .estimate h2 {
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
-    .bag .estimate .desc {
-        font-style: italic;
-        font-size: 12px;
-        margin: 4px 0 17px;
-    }
-
-    .bag .estimate .form {
-        width: 220px;
-    }
-
-    .bag .estimate .input {
-        width: 204px;
-        text-align: center;
-        margin-bottom: 10px;
-    }
 
 .form .label {
     float: left;
@@ -1317,6 +1324,8 @@ select {
 .total .button {
     text-align: left;
     text-indent: 15px;
+    display: inline-block;
+    width: 220px;
 }
 
 .total a .ico {
@@ -1518,11 +1527,11 @@ select {
             border-color: #000;
         }
 
-        .min_block.preview:not(.active) .content {
-            display: block;
-            max-height: 64px;
-            overflow-y: hidden;
-        }
+    .min_block.preview:not(.active) .content {
+        display: block;
+        max-height: 64px;
+        overflow-y: hidden;
+    }
 
 .min_block_full ul {
     float: left;
@@ -2215,6 +2224,12 @@ select {
         font-family: HelveticaNeueLT-MediumCond;
     }
 
+.terms.errorPage a.g_black {
+    margin: 20px 0;
+    display: inline-block;
+    width: 340px;
+}
+
 .g_img {
     border: none !important;
     transition: all 0.3s ease-in-out;
@@ -2283,33 +2298,20 @@ select {
 
 .products .col .txt {
     display: table-cell;
-    vertical-align: middle;
 }
 
 .products .col .price {
     display: block;
     font-size: 12px;
     color: #ac3939;
-    margin: 55px 0 0;
+    margin: 5px 0 0;
 }
 
 .products .col .subtotal {
     display: block;
     font-size: 12px;
     color: #ac3939;
-    margin: 55px 0 0;
-}
-
-.products .item select {
-    display: block;
-    width: 41px;
-    margin: 53px 0 0;
-}
-
-.products .item .voucher_qu {
-    display: block;
-    width: 41px;
-    margin: 53px 0 0;
+    margin: 5px 0 0;
 }
 
 .products .item .delete {
@@ -2318,7 +2320,7 @@ select {
     height: 9px;
     text-indent: -9999em;
     background: url(../images/sprite.png) -108px -38px;
-    margin: 58px 0 0 10px;
+    margin: 10px 0 0 10px;
 }
 
     .products .item .delete:HOVER {

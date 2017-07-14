@@ -3050,6 +3050,8 @@
     <Content Include="wwwroot\app\components\auth\Auth.jsx" />
     <Content Include="wwwroot\app\components\auth\Login.jsx" />
     <Content Include="wwwroot\app\components\auth\Register.jsx" />
+    <Content Include="wwwroot\app\components\basket\BasketItem.jsx" />
+    <Content Include="wwwroot\app\components\basket\Basket.jsx" />
     <Content Include="wwwroot\app\components\catalog\Catalog.jsx" />
     <Content Include="wwwroot\app\components\catalog\Product.jsx" />
     <Content Include="wwwroot\app\components\catalog\ProductImages.jsx" />
@@ -3069,6 +3071,7 @@
     <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />
     <Content Include="wwwroot\app\containers\Root.jsx" />
+    <Content Include="wwwroot\app\containers\basket.js" />
     <Content Include="wwwroot\app\containers\topMenu.js" />
     <Content Include="wwwroot\app\index.jsx" />
     <Content Include="wwwroot\app\reducers\basket.js" />

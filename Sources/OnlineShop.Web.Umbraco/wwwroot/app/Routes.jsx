@@ -6,6 +6,7 @@ import catalog from './containers/catalog/catalog'
 import product from './containers/catalog/product'
 import UserAgreement from './components/info/UserAgreement.jsx'
 import About from './components/info/About.jsx'
+import basket from './containers/basket'
 
 export default (
     <Switch>
@@ -16,5 +17,6 @@ export default (
         <Route exact path='/catalog' component={catalog} />
         <Route exact path='/info/user-agreement' component={UserAgreement} />
         <Route exact path='/info/about' component={About} />
+        <Route exact path='/basket' component={basket} />
     </Switch>
 );
