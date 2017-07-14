@@ -135,11 +135,11 @@ export default class Product extends Component {
                             }
 
                             <div className='clearfix'></div>
-                            <div className='cart'>
-                                {!this.state.variant ? null :
-                                    <button id='button-cart' className='buy_btn g_black add-to-cart-event' onClick={() => this.props.addToCart(this.state.variant.key)}>В корзину <i className='ico'></i></button>
-                                }
-                            </div>
+                            {this.props.product.options && this.props.product.options.length > 0 && !this.state.variant ? null :
+                                <BlockUi className='cart' tag='div' blocking={this.props.itemAdding}>
+                                    <button id='button-cart' className='buy_btn g_black add-to-cart-event' onClick={() => this.props.addToCart(selectedVariant)}>В корзину <i className='ico'></i></button>
+                                </BlockUi>
+                            }
 
                             {!this.props.product.description ? null :
                                 <div className={`b_info details min_block ${this.state.active.description ? 'active' : null}`}>

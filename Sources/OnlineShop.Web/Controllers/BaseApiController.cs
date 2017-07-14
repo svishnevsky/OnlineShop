@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Merchello.Web;
+using Merchello.Web.Pluggable;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,6 +12,9 @@ namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController : UmbracoApiController
     {
+        protected MerchelloHelper Helper => new MerchelloHelper();
+        protected ICustomerContext CustomerContext => PluggableObjectHelper.GetInstance<CustomerContextBase>("CustomerContext", UmbracoContext);
+
         public IHttpActionResult NotValid()
         {
             var message = new HttpResponseMessage(HttpStatusCode.BadRequest)

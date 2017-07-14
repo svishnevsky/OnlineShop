@@ -1980,6 +1980,10 @@ select {
         float: right;
     }
 
+    .product_info .cart {
+        position: relative;
+    }
+
     .product_info .buy_btn {
         text-align: center;
         margin: 10px 0;

@@ -28,7 +28,7 @@ export const requestProduct = () => {
     }
 }
 
-export function fetcProducts() {
+export function fetchProducts() {
     return function (dispatch) {
         return fetch('/umbraco/api/client/products')
             .then(response => {

@@ -3,7 +3,8 @@ import TopMenu from '../components/TopMenu.jsx'
 
 const mapStateToProps = (state) => {
     return {
-        username: state.auth.name
+        username: state.auth.name,
+        qty: state.basket.totalCount
     }
 }
 

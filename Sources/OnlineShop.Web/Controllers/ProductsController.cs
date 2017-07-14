@@ -16,8 +16,7 @@ namespace OnlineShop.Web.Controllers
         [ActionName("Products")]
         public IHttpActionResult GetProducts(int page = 1, int pageSize = 1000)
         {
-            var helper = new MerchelloHelper();
-            var products = helper.Query.Product.Search(page, pageSize).Items
+            var products = this.Helper.Query.Product.Search(page, pageSize).Items
                 .Cast<ProductDisplay>()
                 .Select(this.MapProductListItem)
                 .ToList();
@@ -28,8 +27,7 @@ namespace OnlineShop.Web.Controllers
         [ActionName("Products")]
         public IHttpActionResult GetProduct(Guid key)
         {
-            var helper = new MerchelloHelper();
-            var p = helper.Query.Product.GetByKey(key);
+            var p = this.Helper.Query.Product.GetByKey(key);
             var product = new
             {
                 key = p.Key,
@@ -44,7 +42,7 @@ namespace OnlineShop.Web.Controllers
                 categories = p.AsProductContent().Collections().Select(c => new { name = c.Name, key = c.Key }),
                 images = this.GetImages(Umbraco.TypedMedia(this.GetDetachedValue<int>(p, "images"))),
                 relatedProducts = this.GetDetachedValue<Guid[]>(p, "relatedProducts")?
-                .Select(helper.Query.Product.GetByKey)
+                .Select(this.Helper.Query.Product.GetByKey)
                 .Select(this.MapProductListItem)
                 .ToList(),
                 variants = this.MapVariants(p),
