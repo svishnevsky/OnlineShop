@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
         loading: state.catalog.productLoading,
         product: state.catalog.product,
         current: !state.catalog.products ? undefined : state.catalog.products.filter(p => p.name === ownProps.match.params.product)[0].key,
-        itemAdding: state.basket.itemAdding
+        updating: state.basket.updating
     }
 }
 

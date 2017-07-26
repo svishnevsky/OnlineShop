@@ -81,6 +81,21 @@ export default class Product extends Component {
         return variant && variant.length > 0;
     }
 
+    renderAddToCart() {
+        const product = this.props.product;
+        if (product.trackCount && product.count === 0) {
+            return (<div className='cart'>Нет в наличии</div>);
+        }
+
+        if (this.props.options && this.props.options.length > 0 && !this.state.variant) {
+            return null;
+        }
+        
+        return (<BlockUi className='cart' tag='div' blocking={this.props.updating}>
+            <button id='button-cart' className='buy_btn g_black add-to-cart-event' onClick={() => this.props.addToCart(this.state.variant || this.props.product)}>В корзину <i className='ico'></i></button>
+        </BlockUi>);
+    }
+
     render() {
         const sizes = getChoices(this.props.product, 'size');
         const colors = getChoices(this.props.product, 'color');
@@ -135,11 +150,7 @@ export default class Product extends Component {
                             }
 
                             <div className='clearfix'></div>
-                            {this.props.product.options && this.props.product.options.length > 0 && !this.state.variant ? null :
-                                <BlockUi className='cart' tag='div' blocking={this.props.itemAdding}>
-                                    <button id='button-cart' className='buy_btn g_black add-to-cart-event' onClick={() => this.props.addToCart(selectedVariant)}>В корзину <i className='ico'></i></button>
-                                </BlockUi>
-                            }
+                            {this.renderAddToCart()}
 
                             {!this.props.product.description ? null :
                                 <div className={`b_info details min_block ${this.state.active.description ? 'active' : null}`}>
@@ -168,6 +179,8 @@ export default class Product extends Component {
                                 </div>
                             </div>
                         }
+
+                        <div className='clearfix'></div>
 
                     </section>
                 }

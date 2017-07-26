@@ -69,6 +69,36 @@ namespace OnlineShop.Web.Controllers
             });
         }
 
+        [HttpPatch]
+        [ActionName("Basket")]
+        public IHttpActionResult UpdateQty(AddBasketItemModel model)
+        {
+            var basket = this.CustomerContext.CurrentCustomer.Basket();
+            var exists = basket.Items.FirstOrDefault(item => item.Key == model.Key);
+            if (exists != null)
+            {
+                basket.UpdateQuantity(exists.Key, model.Quantity.Value);
+                basket.Save();
+            }
+
+            return this.GetBasket();
+        }
+
+        [HttpDelete]
+        [ActionName("Basket")]
+        public IHttpActionResult RemoveItem(Guid key)
+        {
+            var basket = this.CustomerContext.CurrentCustomer.Basket();
+            var exists = basket.Items.FirstOrDefault(item => item.Key == key);
+            if (exists != null)
+            {
+                basket.RemoveItem(key);
+                basket.Save();
+            }
+
+            return this.GetBasket();
+        }
+
         private object MapBasketItem(ILineItem item)
         {
             var product = this.Helper.Query.Product.GetByKey(new Guid(item.ExtendedData["merchProductKey"]));
@@ -86,7 +116,10 @@ namespace OnlineShop.Web.Controllers
                 image = this.GetImages(Umbraco.TypedMedia(this.GetDetachedValue<int>(product, "images")))?.FirstOrDefault(),
                 options = variant == null ? null : this.GetBasketItemOptions(variant.Attributes, product.ProductOptions),
                 category = product.AsProductContent().Collections().FirstOrDefault()?.Name,
-                available = variant == null ? product.TrackInventory ? product.TotalInventoryCount : int.MaxValue : variant.TrackInventory ? variant.TotalInventoryCount : int.MaxValue
+                available = variant == null
+                    ? product.TrackInventory ? product.TotalInventoryCount : (int?)null
+                    : variant.TrackInventory ? variant.TotalInventoryCount : (int?)null,
+
             };
         }
 

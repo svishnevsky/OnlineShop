@@ -1,38 +1,15 @@
 ﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import BlockUi from 'react-block-ui'
 import { formatPrice } from '../../utils/common'
 import BasketItem from './BasketItem.jsx'
 
 export default class Basket extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            totalPrice: props.basket.totalPrice
-        }
-
-        this.addToTotal = this.addToTotal.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.basket.totalPrice === this.props.basket.totalPrice) {
-            return;
-        }
-
-        let state = this.state;
-        state.totalPrice = nextProps.basket.totalPrice;
-        this.setState(state);
-    }
-
-    addToTotal(amount) {
-        let state = this.state;
-        state.totalPrice += amount;
-        this.setState(state);
-    }
-
     render() {
+        const basket = this.props.basket;
         return (
             <article className='g_wrapper'>
-                {!this.props.basket.items || this.props.basket.items.length === 0 ?
+                {!basket.items || basket.items.length === 0 ?
                     <section className='terms clearfix errorPage'>
                         <h1>Ваша корзина пуста.</h1>
                         <Link to='/catalog' className='g_black'>Продолжить покупки <i className='ico'></i></Link>
@@ -49,9 +26,9 @@ export default class Basket extends Component {
                                     <div className='col col4'><h3></h3></div>
                                     <div className='col col5'></div>
                                 </div>
-                                <div className='items'>
-                                    {this.props.basket.items.map(item => <BasketItem key={item.key} item={item} addToTotal={this.addToTotal} />)}
-                                </div>
+                                <BlockUi tag='div' className='items' blocking={basket.updating}>
+                                    {basket.items.map(item => <BasketItem key={item.key} item={item} changeQty={this.props.changeQty} removeItem={this.props.removeItem} />)}
+                                </BlockUi>
                             </div>
                             <div className='total'>
                                 <div className='legend'>
@@ -59,7 +36,7 @@ export default class Basket extends Component {
                                 </div>
                                 <div className='table'>
                                     <div className='row'>
-                                        <span><b>Всего</b>: {formatPrice(this.state.totalPrice)}</span>
+                                        <span><b>Всего</b>: {formatPrice(basket.totalPrice)}</span>
                                     </div>
                                 </div>
                                 <div className='table grand'>

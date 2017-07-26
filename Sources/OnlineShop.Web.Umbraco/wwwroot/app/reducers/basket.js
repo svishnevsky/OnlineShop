@@ -1,14 +1,14 @@
 ﻿import * as types from '../actions/types';
 
-const basket = (state = { items: [], itemAdding: false }, action) => {
+const basket = (state = { items: [], updating: false }, action) => {
     switch (action.type) {
-        case types.BASKET_ITEM_ADD_REQUESTED:
+        case types.BASKET_UPDATE_REQUESTED:
             return Object.assign({}, state, {
-                itemAdding: true
+                updating: true
             });
         case types.BASKET_UPDATED:
             return Object.assign({}, state, {
-                itemAdding: false,
+                updating: false,
                 items: action.basket.items,
                 totalCount: action.basket.totalCount,
                 totalPrice: action.basket.totalPrice

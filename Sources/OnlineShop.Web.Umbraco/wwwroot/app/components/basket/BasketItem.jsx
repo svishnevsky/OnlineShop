@@ -3,25 +3,15 @@ import { Link } from 'react-router-dom';
 import { formatPrice, getCropUrl } from '../../utils/common'
 
 export default class BasketItem extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            quantity: props.item.quantity
-        }
-    }
-
     changeQty(e) {
         e.preventDefault();
-        const newQty = e.target.value;
-        if (newQty < 0 || newQty > this.props.item.available) {
-            return;
-        }
+        const newQty = new Number(e.target.value);
+        this.props.changeQty(this.props.item.key, newQty);
+    }
 
-        let state = this.state;
-        state.quantity = e.target.value;
-        this.setState(state);
-        this.props.addToTotal((newQty - this.props.item.quantity) * this.props.item.price);
+    remove(e) {
+        e.preventDefault();
+        this.props.removeItem(this.props.item.key);
     }
 
     render() {
@@ -44,12 +34,14 @@ export default class BasketItem extends Component {
                     <p className='price'>{formatPrice(this.props.item.price)}</p>
                 </div>
                 <div className='col col3'>
-                    <input className='qty col3' type='number' onChange={(e) => this.changeQty(e)} value={this.state.quantity} />
+                    <select className='qty col3' value={this.props.item.quantity} onChange={(e) => this.changeQty(e)}>
+                        {[...Array(this.props.item.available === 0 ? 0 : this.props.item.available || 100).keys()].map(qty => <option key={qty + 1} value={qty + 1}>{qty + 1}</option>)}
+                    </select>
                 </div>
                 <div className='col col4'>
                 </div>
                 <div className='col col5'>
-                    <button className='delete' />
+                    <button className='delete' onClick={e => this.remove(e)} />
                 </div>
             </div>
         );
