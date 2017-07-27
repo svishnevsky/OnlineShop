@@ -4,8 +4,8 @@ import banner from './containers/banner'
 import auth from './containers/auth/auth'
 import catalog from './containers/catalog/catalog'
 import product from './containers/catalog/product'
-import UserAgreement from './components/info/UserAgreement.jsx'
-import About from './components/info/About.jsx'
+import userAgreement from './containers/info/userAgreement'
+import about from './containers/info/about'
 import basket from './containers/basket'
 
 export default (
@@ -15,8 +15,8 @@ export default (
         <Route exact path='/catalog/:name/:product' component={product} />
         <Route exact path='/catalog/:name' component={catalog} />
         <Route exact path='/catalog' component={catalog} />
-        <Route exact path='/info/user-agreement' component={UserAgreement} />
-        <Route exact path='/info/about' component={About} />
+        <Route exact path='/info/user-agreement' component={userAgreement} />
+        <Route exact path='/info/about' component={about} />
         <Route exact path='/basket' component={basket} />
     </Switch>
 );

@@ -233,6 +233,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\AddBasketItemModel.cs" />

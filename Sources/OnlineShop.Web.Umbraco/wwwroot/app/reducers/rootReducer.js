@@ -6,6 +6,7 @@ import auth from './auth'
 import catalog from './catalog'
 import basket from './basket'
 import location from './location'
+import info from './info'
 
 const rootReducer = combineReducers({
     shipment,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     catalog,
     basket,
     location,
+    info,
     router: routerReducer
 })
 

@@ -3044,6 +3044,7 @@
     <Content Include="wwwroot\app\actions\basket.js" />
     <Content Include="wwwroot\app\actions\catalog.js" />
     <Content Include="wwwroot\app\actions\banner.js" />
+    <Content Include="wwwroot\app\actions\info.js" />
     <Content Include="wwwroot\app\actions\shipment.js" />
     <Content Include="wwwroot\app\actions\types.js" />
     <Content Include="wwwroot\app\components\App.jsx" />
@@ -3070,6 +3071,8 @@
     <Content Include="wwwroot\app\containers\catalog\catalog.js" />
     <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />
+    <Content Include="wwwroot\app\containers\info\userAgreement.js" />
+    <Content Include="wwwroot\app\containers\info\about.js" />
     <Content Include="wwwroot\app\containers\Root.jsx" />
     <Content Include="wwwroot\app\containers\basket.js" />
     <Content Include="wwwroot\app\containers\topMenu.js" />
@@ -3077,6 +3080,7 @@
     <Content Include="wwwroot\app\reducers\basket.js" />
     <Content Include="wwwroot\app\reducers\auth.js" />
     <Content Include="wwwroot\app\reducers\catalog.js" />
+    <Content Include="wwwroot\app\reducers\info.js" />
     <Content Include="wwwroot\app\reducers\location.js" />
     <Content Include="wwwroot\app\reducers\rootReducer.js" />
     <Content Include="wwwroot\app\reducers\banner.js" />
