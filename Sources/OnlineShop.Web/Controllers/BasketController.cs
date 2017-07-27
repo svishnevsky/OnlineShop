@@ -77,7 +77,15 @@ namespace OnlineShop.Web.Controllers
             var exists = basket.Items.FirstOrDefault(item => item.Key == model.Key);
             if (exists != null)
             {
-                basket.UpdateQuantity(exists.Key, model.Quantity.Value);
+                if (model.Quantity.HasValue && model.Quantity > 0)
+                {
+                    basket.UpdateQuantity(exists.Key, model.Quantity.Value);
+                }
+                else
+                {
+                    basket.RemoveItem(model.Key);
+                }
+
                 basket.Save();
             }
 

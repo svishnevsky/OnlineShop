@@ -3077,6 +3077,7 @@
     <Content Include="wwwroot\app\reducers\basket.js" />
     <Content Include="wwwroot\app\reducers\auth.js" />
     <Content Include="wwwroot\app\reducers\catalog.js" />
+    <Content Include="wwwroot\app\reducers\location.js" />
     <Content Include="wwwroot\app\reducers\rootReducer.js" />
     <Content Include="wwwroot\app\reducers\banner.js" />
     <Content Include="wwwroot\app\reducers\shipment.js" />
