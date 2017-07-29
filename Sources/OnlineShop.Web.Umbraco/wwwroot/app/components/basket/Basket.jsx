@@ -41,9 +41,9 @@ export default class Basket extends Component {
                                 </div>
                                 <div className='table grand'>
                                     <div className='row'>
-                                        <a href='/checkout' className='g_black checkout button'>
+                                        <Link to='/checkout' className='g_black checkout button'>
                                             Оформить заказ<i className='ico'></i>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

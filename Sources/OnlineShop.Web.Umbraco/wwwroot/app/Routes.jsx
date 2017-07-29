@@ -7,6 +7,7 @@ import product from './containers/catalog/product'
 import userAgreement from './containers/info/userAgreement'
 import about from './containers/info/about'
 import basket from './containers/basket'
+import checkout from './containers/checkout/checkout'
 
 export default (
     <Switch>
@@ -18,5 +19,6 @@ export default (
         <Route exact path='/info/user-agreement' component={userAgreement} />
         <Route exact path='/info/about' component={about} />
         <Route exact path='/basket' component={basket} />
+        <Route exact path='/checkout' component={checkout} />
     </Switch>
 );

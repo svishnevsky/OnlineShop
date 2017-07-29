@@ -1767,96 +1767,159 @@ select {
     list-style-type: decimal;
 }
 
-.checkout_form {
-    margin: 16px 0 50px;
+.clear100 {
+    float: left;
+    width: 100%;
+    clear: both;
 }
 
-    .checkout_form .method {
+.checkout {
+    width: 810px;
+}
+
+    .checkout .simple-content {
+        margin: 0 5px 30px 5px;
         float: left;
         width: 100%;
-        position: relative;
-        margin-bottom: 2px;
     }
 
-        .checkout_form .method h4 {
+    .checkout .simplecheckout {
+        width: 100%;
+    }
+
+    .checkout .step-menu {
+        margin: 25px 0;
+        padding: 1px 0 25px 0;
+        border-bottom: 1px solid #bbb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .checkout .step-menu .simple-step {
+            color: #000000;
+            font-size: 13px;
+            border-radius: 0;
+            background-color: transparent;
+            padding: 5px;
+            display: inline-block;
+        }
+
+            .checkout .step-menu .simple-step .step-number {
+                float: left;
+                width: 32px;
+                height: 32px;
+                background: url(/images/circle-progress.svg) 0 -1px no-repeat;
+                font-style: normal;
+                text-align: center;
+                box-sizing: border-box;
+                margin: -.5em 9px 0 0;
+                padding-top: .46em;
+            }
+
+            .checkout .step-menu .simple-step.completed {
+                color: #ABDFA8;
+                border-radius: 0;
+                background-color: #FFF;
+                font-weight: bold;
+                display: inline-block;
+                font-size: 13px;
+            }
+
+            .checkout .step-menu .simple-step.current {
+                color: #000;
+            }
+
+    .checkout .checkout_form {
+        margin: 16px 0 50px;
+    }
+
+        .checkout .checkout_form .method {
             float: left;
             width: 100%;
             position: relative;
+            margin-bottom: 2px;
+        }
+
+            .checkout .checkout_form .method h4 {
+                float: left;
+                width: 100%;
+                position: relative;
+                margin-bottom: 13px;
+                font-size: 10px;
+                text-transform: uppercase;
+                color: #7c7c7c;
+            }
+
+        .checkout .checkout_form .f_col .shipping {
+            float: left;
+            width: 100%;
+            position: relative;
+        }
+
+        .checkout .checkout_form .f_col .payment {
+            float: left;
+            width: 100%;
+            position: relative;
+            margin-top: 21px;
+        }
+
+        .checkout .checkout_form .f_col .shipping_info {
+            float: left;
+            width: 100%;
+            position: relative;
+            margin-top: 21px;
+        }
+
+        .checkout .checkout_form .f_col .billing_info {
+            float: left;
+            width: 100%;
+            position: relative;
+        }
+
+        .checkout .checkout_form .f_col .row.subscribe {
+            margin: -7px 0 3px;
+        }
+
+        .checkout .checkout_form .card_info {
+            float: left;
+            width: 100%;
+            position: relative;
+        }
+
+            .checkout .checkout_form .card_info .options {
+                float: left;
+                width: 100%;
+                position: relative;
+                height: 39px;
+                background: #bababa;
+                margin: 0 0 12px;
+            }
+
+        .checkout .checkout_form .input {
+            width: 204px;
             margin-bottom: 13px;
-            font-size: 10px;
-            text-transform: uppercase;
-            color: #7c7c7c;
         }
 
-    .checkout_form .f_col .shipping {
-        float: left;
-        width: 100%;
-        position: relative;
-    }
-
-    .checkout_form .f_col .payment {
-        float: left;
-        width: 100%;
-        position: relative;
-        margin-top: 21px;
-    }
-
-    .checkout_form .f_col .shipping_info {
-        float: left;
-        width: 100%;
-        position: relative;
-        margin-top: 21px;
-    }
-
-    .checkout_form .f_col .billing_info {
-        float: left;
-        width: 100%;
-        position: relative;
-    }
-
-    .checkout_form .f_col .row.subscribe {
-        margin: -7px 0 3px;
-    }
-
-    .checkout_form .card_info {
-        float: left;
-        width: 100%;
-        position: relative;
-    }
-
-        .checkout_form .card_info .options {
-            float: left;
-            width: 100%;
-            position: relative;
-            height: 39px;
-            background: #bababa;
-            margin: 0 0 12px;
+        .checkout .checkout_form .checkbox_w {
+            margin: 5px 0 9px;
         }
 
-    .checkout_form .input {
-        width: 204px;
-        margin-bottom: 13px;
-    }
+            .checkout .checkout_form .checkbox_w .label {
+                width: 195px;
+                position: relative;
+                top: 1px;
+            }
 
-    .checkout_form .checkbox_w {
-        margin: 5px 0 9px;
-    }
-
-        .checkout_form .checkbox_w .label {
-            width: 195px;
-            position: relative;
-            top: 1px;
+        .checkout .checkout_form .radio_w {
+            margin-bottom: 10px;
         }
 
-    .checkout_form .radio_w {
-        margin-bottom: 10px;
-    }
-
-        .checkout_form .radio_w .label {
-            width: 195px;
-            position: relative;
-            top: 1px;
-        }
+            .checkout .checkout_form .radio_w .label {
+                width: 195px;
+                position: relative;
+                top: 1px;
+            }
 
 .card_info .options li {
     float: left;
