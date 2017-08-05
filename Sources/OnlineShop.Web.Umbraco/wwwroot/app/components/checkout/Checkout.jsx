@@ -13,6 +13,7 @@ export default class Checkout extends Component {
                 <section className='checkout clearfix'>
                     <div className='simple-content'>
                         <div className='simplecheckout'>
+
                             <div className='step-menu clear100'>
                                 <span className='simple-step current completed'><i className='step-number'>1</i>Плательщик</span>
                                 <span className='simple-step-delimiter'><img src='/images/next_gray.png' /></span>
@@ -22,6 +23,9 @@ export default class Checkout extends Component {
                                 <span className='simple-step-delimiter'><img src='/images/next_gray.png' /></span>
                                 <span className='simple-step'><i className='step-number'>4</i>Подтверждение</span>
                             </div>
+
+                            
+
                         </div>
                     </div>
                 </section>

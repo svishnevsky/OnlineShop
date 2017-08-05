@@ -3,7 +3,7 @@ import Header from '../components/Header.jsx'
 
 const mapStateToProps = (state) => {
   return {
-    freeMinPrice: state.shipment.freeMinPrice
+    freeMinPrice: state.options.freeMinPrice
   }
 }
 

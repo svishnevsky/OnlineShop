@@ -3045,7 +3045,7 @@
     <Content Include="wwwroot\app\actions\catalog.js" />
     <Content Include="wwwroot\app\actions\banner.js" />
     <Content Include="wwwroot\app\actions\info.js" />
-    <Content Include="wwwroot\app\actions\shipment.js" />
+    <Content Include="wwwroot\app\actions\options.js" />
     <Content Include="wwwroot\app\actions\types.js" />
     <Content Include="wwwroot\app\components\App.jsx" />
     <Content Include="wwwroot\app\components\auth\Auth.jsx" />
@@ -3087,7 +3087,7 @@
     <Content Include="wwwroot\app\reducers\location.js" />
     <Content Include="wwwroot\app\reducers\rootReducer.js" />
     <Content Include="wwwroot\app\reducers\banner.js" />
-    <Content Include="wwwroot\app\reducers\shipment.js" />
+    <Content Include="wwwroot\app\reducers\options.js" />
     <Content Include="wwwroot\app\Routes.jsx" />
     <Content Include="wwwroot\app\store\configureStore.js" />
     <Content Include="App_Plugins\Merchello\assets\css\Merchello.css.map" />

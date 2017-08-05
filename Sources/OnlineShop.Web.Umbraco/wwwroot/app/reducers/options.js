@@ -1,8 +1,8 @@
 ﻿import * as types from '../actions/types';
 
-const shipment = (state = { freeMinPrice: 70 }, action) => {
+const options = (state = { freeMinPrice: 70 }, action) => {
     switch (action.type) {
-        case types.SHIPMENT_SET_FREE_MIN_PRICE:
+        case types.OPTIONS_SET_FREE_MIN_PRICE:
             return Object.assign({}, state, {
                 freeMinPrice: action.price
             });
@@ -11,4 +11,4 @@ const shipment = (state = { freeMinPrice: 70 }, action) => {
     }
 }
 
-export default shipment;
+export default options;

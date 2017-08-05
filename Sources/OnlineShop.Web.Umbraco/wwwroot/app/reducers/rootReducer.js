@@ -1,6 +1,6 @@
 ﻿import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux';
-import shipment from './shipment'
+import options from './options'
 import banner from './banner'
 import auth from './auth'
 import catalog from './catalog'
@@ -9,7 +9,7 @@ import location from './location'
 import info from './info'
 
 const rootReducer = combineReducers({
-    shipment,
+    options,
     banner,
     auth,
     catalog,
