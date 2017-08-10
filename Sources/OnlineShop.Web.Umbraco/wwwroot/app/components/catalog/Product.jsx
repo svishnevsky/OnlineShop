@@ -86,8 +86,8 @@ export default class Product extends Component {
         if (product.trackCount && product.count === 0) {
             return (<div className='cart'>Нет в наличии</div>);
         }
-
-        if (this.props.options && this.props.options.length > 0 && !this.state.variant) {
+        
+        if (this.props.product.options && this.props.product.options.length > 0 && !this.state.variant) {
             return null;
         }
         
