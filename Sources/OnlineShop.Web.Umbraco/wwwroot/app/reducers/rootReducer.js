@@ -7,6 +7,7 @@ import catalog from './catalog'
 import basket from './basket'
 import location from './location'
 import info from './info'
+import account from './account'
 
 const rootReducer = combineReducers({
     options,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     basket,
     location,
     info,
+    account,
     router: routerReducer
 })
 

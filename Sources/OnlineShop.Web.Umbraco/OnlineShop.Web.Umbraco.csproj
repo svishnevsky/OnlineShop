@@ -3040,6 +3040,7 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="webpack.config.js" />
+    <Content Include="wwwroot\app\actions\account.js" />
     <Content Include="wwwroot\app\actions\auth.js" />
     <Content Include="wwwroot\app\actions\basket.js" />
     <Content Include="wwwroot\app\actions\catalog.js" />
@@ -3047,6 +3048,8 @@
     <Content Include="wwwroot\app\actions\info.js" />
     <Content Include="wwwroot\app\actions\options.js" />
     <Content Include="wwwroot\app\actions\types.js" />
+    <Content Include="wwwroot\app\components\account\Account.jsx" />
+    <Content Include="wwwroot\app\components\account\Personal.jsx" />
     <Content Include="wwwroot\app\components\App.jsx" />
     <Content Include="wwwroot\app\components\auth\Auth.jsx" />
     <Content Include="wwwroot\app\components\auth\Login.jsx" />
@@ -3065,6 +3068,7 @@
     <Content Include="wwwroot\app\components\info\About.jsx" />
     <Content Include="wwwroot\app\components\info\UserAgreement.jsx" />
     <Content Include="wwwroot\app\components\TopMenu.jsx" />
+    <Content Include="wwwroot\app\containers\account\personal.js" />
     <Content Include="wwwroot\app\containers\auth\auth.js" />
     <Content Include="wwwroot\app\containers\auth\login.js" />
     <Content Include="wwwroot\app\containers\auth\register.js" />
@@ -3080,6 +3084,7 @@
     <Content Include="wwwroot\app\containers\basket.js" />
     <Content Include="wwwroot\app\containers\topMenu.js" />
     <Content Include="wwwroot\app\index.jsx" />
+    <Content Include="wwwroot\app\reducers\account.js" />
     <Content Include="wwwroot\app\reducers\basket.js" />
     <Content Include="wwwroot\app\reducers\auth.js" />
     <Content Include="wwwroot\app\reducers\catalog.js" />

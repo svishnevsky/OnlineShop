@@ -1634,117 +1634,123 @@ select {
         color: #ac3939;
     }
 
-.account .nav {
-    float: left;
-    width: 100%;
-    position: relative;
-    border-bottom: 1px solid #dfdfdf;
-    margin: 39px 0 0;
+.account {
+    width: 525px;
 }
 
-    .account .nav li {
+    .account .nav {
         float: left;
-        width: 170px;
+        width: 100%;
         position: relative;
-        margin-right: 5px;
-        padding-bottom: 7px;
-        text-align: center;
+        border-bottom: 1px solid #dfdfdf;
+        margin: 39px 0 0;
     }
 
-        .account .nav li a {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: #7c7c7c;
+        .account .nav li {
+            float: left;
+            width: 170px;
+            position: relative;
+            margin-right: 5px;
+            padding-bottom: 7px;
+            text-align: center;
         }
 
-            .account .nav li a:HOVER {
-                color: #ac3939;
+            .account .nav li a {
+                font-size: 10px;
+                text-transform: uppercase;
+                color: #7c7c7c;
             }
 
-        .account .nav li .border {
-            display: none;
-            width: 100%;
-            height: 2px;
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            background: #7c7c7c;
-        }
+                .account .nav li a:HOVER {
+                    color: #ac3939;
+                }
 
-        .account .nav li.active .border {
-            display: block;
-        }
+            .account .nav li .border {
+                display: none;
+                width: 100%;
+                height: 2px;
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                background: #7c7c7c;
+            }
 
-        .account .nav li.last {
-            margin-right: 0;
-        }
+            .account .nav li.active .border {
+                display: block;
+            }
 
-.account .tab_content .orders {
-    float: left;
-    width: 100%;
-    position: relative;
-    margin: 44px 0 0;
-}
+            .account .nav li.last {
+                margin-right: 0;
+            }
 
-.account .tab_content .form {
-    position: relative;
-    width: 100%;
-}
-
-    .account .tab_content .form .input {
+    .account .tab_content .orders {
+        float: left;
         width: 100%;
-        margin-bottom: 3px;
-        box-sizing: border-box
+        position: relative;
+        margin: 44px 0 0;
     }
 
-    .account .tab_content .form button {
-        margin: 10px 0 25px;
+    .account .tab_content .form {
+        width: 220px;
+        position: relative;
+        left: 50%;
+        margin: 20px 0 0 -110px;
     }
 
-.account .orders .b_order {
-    float: left;
-    width: 100%;
-    position: relative;
-    margin-bottom: 11px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #dfdfdf;
-}
+        .account .tab_content .form .input {
+            width: 100%;
+            margin-bottom: 3px;
+            box-sizing: border-box
+        }
 
-    .account .orders .b_order span {
-        display: block;
-        margin-bottom: 9px;
-        font-size: 12px;
+        .account .tab_content .form button {
+            margin: 10px 0 25px;
+        }
+
+    .account .orders .b_order {
+        float: left;
+        width: 100%;
+        position: relative;
+        margin-bottom: 11px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #dfdfdf;
     }
 
-    .account .orders .b_order.last {
-        border: none;
-    }
+        .account .orders .b_order span {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 12px;
+        }
 
-.account form .informer {
-    width: 100%;
-    position: relative;
-    margin-top: -9px;
-    text-align: center;
-    font-size: 14px;
-    color: #7c7c7c;
-}
+        .account .orders .b_order.last {
+            border: none;
+        }
 
-    .account form .informer a {
-        text-decoration: underline;
+    .account form .informer {
+        width: 100%;
+        position: relative;
+        margin-top: -9px;
+        text-align: center;
+        font-size: 14px;
         color: #7c7c7c;
     }
 
-        .account form .informer a:HOVER {
-            color: #ac3939;
+        .account form .informer a {
+            text-decoration: underline;
+            color: #7c7c7c;
         }
 
-.account .page_h {
-    text-transform: uppercase;
-}
+            .account form .informer a:HOVER {
+                color: #ac3939;
+            }
 
-.account .label {
-    margin-top: 20px;
-}
+    .account .page_h {
+        text-transform: uppercase;
+    }
+
+    .account .label {
+        margin-top: 20px;
+    }
 
 .blog .post {
     float: left;

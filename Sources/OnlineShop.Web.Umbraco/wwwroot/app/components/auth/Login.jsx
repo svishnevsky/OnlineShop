@@ -28,7 +28,7 @@ export default class Login extends Component {
                         <label className='label' htmlFor='password'>Пароль</label>
                         <Validation.components.Input className='input' id='password' name='password' placeholder='Пароль' type='password' value={this.state.password} validations={['required', 'password']} errorClassName='error' />
                         <div className='clear'></div>
-                        <button className='g_black'>Войти <i className='ico'></i></button>
+                        <Validation.components.Button className='g_black'>Войти <i className='ico'></i></Validation.components.Button>
                         <div className='informer'>
                             <a href='/forgot-password'>Забыли пароль?</a>
                         </div>

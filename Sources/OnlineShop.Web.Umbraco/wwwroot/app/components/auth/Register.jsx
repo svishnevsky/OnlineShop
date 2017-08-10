@@ -43,7 +43,7 @@ export default class Register extends Component {
                         <Validation.components.Input className='input' id='regPassword' name='regPassword' placeholder='Пароль' type='password' value={this.state.password} validations={['required', 'password']} errorClassName='error' />
                         <div className='clear'></div>
 
-                        <button className='g_black'>Регистрация <i className='ico'></i></button>
+                        <Validation.components.Button className='g_black'>Регистрация <i className='ico'></i></Validation.components.Button>
                     </Validation.components.Form>
                 </BlockUi>
                 <div className='clearfix'/>

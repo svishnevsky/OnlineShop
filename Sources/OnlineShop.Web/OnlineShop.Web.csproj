@@ -235,8 +235,10 @@
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\AddBasketItemModel.cs" />
+    <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\NewUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
