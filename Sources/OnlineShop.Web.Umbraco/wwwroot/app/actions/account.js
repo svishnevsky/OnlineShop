@@ -46,3 +46,29 @@ export function updateAddress(address, type) {
             });
     }
 }
+
+function loadPassword() {
+    return {
+        type: types.ACCOUNT_PASSWORD_LOADING
+    }
+}
+
+function passwordChanged() {
+    return {
+        type: types.ACCOUNT_PASSWORD_CHANGED
+    }
+}
+
+export function changePassword(password) {
+    return function (dispatch) {
+        dispatch(loadPassword());
+        return fetch('/umbraco/api/client/users', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, credentials: "same-origin", body: JSON.stringify({ password: password }) })
+            .then(response => {
+                if (!response.ok) {
+                    return;
+                } else {
+                    dispatch(passwordChanged());
+                }
+            });
+    }
+}

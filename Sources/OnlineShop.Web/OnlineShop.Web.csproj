@@ -239,6 +239,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\AddBasketItemModel.cs" />
     <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\NewUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

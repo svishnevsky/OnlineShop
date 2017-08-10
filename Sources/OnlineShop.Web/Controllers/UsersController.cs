@@ -85,5 +85,15 @@ namespace OnlineShop.Web.Controllers
             Members.Logout();
             return Ok();
         }
+
+        [HttpPatch]
+        [ActionName("Users")]
+        [Authorize]
+        public IHttpActionResult ChangePassword([FromBody]ChangePasswordModel model)
+        {
+            var member = Services.MemberService.GetById(Members.GetCurrentMemberId());
+            Services.MemberService.SavePassword(member, model.Password);
+            return Ok();
+        }
     }
 }

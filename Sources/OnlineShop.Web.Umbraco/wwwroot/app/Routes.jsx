@@ -9,6 +9,7 @@ import about from './containers/info/about'
 import basket from './containers/basket'
 import checkout from './containers/checkout/checkout'
 import personal from './containers/account/personal'
+import password from './containers/account/password'
 
 export default (
     <Switch>
@@ -22,5 +23,6 @@ export default (
         <Route exact path='/basket' component={basket} />
         <Route exact path='/checkout' component={checkout} />
         <Route exact path='/account' component={personal} />
+        <Route exact path='/account/password' component={password} />
     </Switch>
 );
