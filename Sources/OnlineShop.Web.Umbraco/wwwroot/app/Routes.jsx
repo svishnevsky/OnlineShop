@@ -7,7 +7,8 @@ import product from './containers/catalog/product'
 import userAgreement from './containers/info/userAgreement'
 import about from './containers/info/about'
 import basket from './containers/basket'
-import checkout from './containers/checkout/checkout'
+import billing from './containers/checkout/billing'
+import shipping from './containers/checkout/shipping'
 import personal from './containers/account/personal'
 import password from './containers/account/password'
 
@@ -21,7 +22,8 @@ export default (
         <Route exact path='/info/user-agreement' component={userAgreement} />
         <Route exact path='/info/about' component={about} />
         <Route exact path='/basket' component={basket} />
-        <Route exact path='/checkout' component={checkout} />
+        <Route exact path='/checkout' component={billing} />
+        <Route exact path='/checkout/shipping' component={shipping} />
         <Route exact path='/account' component={personal} />
         <Route exact path='/account/password' component={password} />
     </Switch>

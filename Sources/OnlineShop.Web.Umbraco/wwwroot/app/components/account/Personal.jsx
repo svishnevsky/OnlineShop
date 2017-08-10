@@ -19,8 +19,8 @@ export default class Personal extends Account {
     }
 
     componentWillMount() {
-        if (!this.props.user) {
-            this.props.fetchPeronal();
+        if (!this.props.billing) {
+            this.props.fetchBilling();
         }
     }
 

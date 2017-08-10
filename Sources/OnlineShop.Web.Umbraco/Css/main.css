@@ -111,6 +111,7 @@ h1 {
     font-size: inherit;
     margin: 0;
     font-weight: normal;
+    color: #880016;
 }
 
 h2 {
@@ -1042,7 +1043,7 @@ select {
     font-size: 18px;
     text-transform: uppercase;
     color: #fff;
-    background: #000;
+    background: #880016;
     transition: all 0.1s ease-in-out;
     padding: 7px 0;
     text-align: left;
@@ -1794,7 +1795,7 @@ select {
     }
 
     .checkout .step-menu {
-        margin: 25px 0;
+        margin: 25px 0 0 0;
         padding: 1px 0 25px 0;
         border-bottom: 1px solid #bbb;
         display: flex;
@@ -1836,9 +1837,66 @@ select {
                 color: #000;
             }
 
+    .checkout h1.page_h {
+        margin: 10px 0 0 0;
+    }
+
+    .checkout .form input[type=checkbox] {
+        vertical-align: middle;
+        margin: 2px 0 2px 5px;
+    }
+
+    .checkout .tab_content form.checkout {
+        width: 460px;
+        margin-left: -230px;
+    }
+
+        .checkout .tab_content form.checkout button {
+            left: 50%;
+            margin-left: -115px;
+            width: 50%;
+        }
+
+        .checkout .tab_content form.checkout .method-container {
+            float: left;
+            width: 50%;
+            box-sizing: border-box;
+            padding: 0 0 0 30px;
+        }
+
+            .checkout .tab_content form.checkout .method-container:nth-child(odd) {
+                padding: 0 30px 0 0;
+                border-right: 1px solid #c5c5c5;
+            }
+
+            .checkout .tab_content form.checkout .method-container .method {
+                margin-top: 20px;
+            }
+
+                .checkout .tab_content form.checkout .method-container .method input[type=radio] {
+                    margin-right: 10px;
+                    float: left;
+                    height: 35px;
+                }
+
+                .checkout .tab_content form.checkout .method-container .method label span {
+                    display: block;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                }
+
+                    .checkout .tab_content form.checkout .method-container .method label span.comment {
+                        font-size: 10px;
+                        color: #7c7c7c;
+                        text-transform: none;
+                    }
+
+
+
     .checkout .checkout_form {
         margin: 16px 0 50px;
     }
+
 
         .checkout .checkout_form .method {
             float: left;

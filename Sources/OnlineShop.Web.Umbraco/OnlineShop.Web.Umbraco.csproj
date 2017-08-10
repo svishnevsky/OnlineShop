@@ -3061,6 +3061,7 @@
     <Content Include="wwwroot\app\components\catalog\Product.jsx" />
     <Content Include="wwwroot\app\components\catalog\ProductImages.jsx" />
     <Content Include="wwwroot\app\components\catalog\ProductList.jsx" />
+    <Content Include="wwwroot\app\components\checkout\ShippingAddress.jsx" />
     <Content Include="wwwroot\app\components\checkout\BillingAddress.jsx" />
     <Content Include="wwwroot\app\components\checkout\Checkout.jsx" />
     <Content Include="wwwroot\app\components\Footer.jsx" />
@@ -3077,7 +3078,8 @@
     <Content Include="wwwroot\app\containers\banner.js" />
     <Content Include="wwwroot\app\containers\catalog\product.js" />
     <Content Include="wwwroot\app\containers\catalog\catalog.js" />
-    <Content Include="wwwroot\app\containers\checkout\checkout.js" />
+    <Content Include="wwwroot\app\containers\checkout\shipping.js" />
+    <Content Include="wwwroot\app\containers\checkout\billing.js" />
     <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />
     <Content Include="wwwroot\app\containers\info\userAgreement.js" />

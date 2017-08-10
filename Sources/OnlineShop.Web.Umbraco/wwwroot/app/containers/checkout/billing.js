@@ -1,8 +1,7 @@
 ﻿import { connect } from 'react-redux'
-import Personal from '../../components/account/Personal.jsx'
-import { logout } from '../../actions/auth'
-import { fetchAddress, updateAddress } from '../../actions/account'
 import { push } from 'react-router-redux'
+import BillingAddress from '../../components/checkout/BillingAddress.jsx'
+import { fetchAddress, updateAddress } from '../../actions/account'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -11,15 +10,15 @@ const mapStateToProps = (state, ownProps) => {
         address: state.account.billing,
         loading: state.account.billingLoading
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => {
-            dispatch(logout());
-        },
         goToLogin: () => {
             dispatch(push('/auth'));
+        },
+        goNext: () => {
+            dispatch(push('/checkout/shipping'));
         },
         fetchBilling: () => {
             dispatch(fetchAddress('billing'));
@@ -30,5 +29,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const personal = connect(mapStateToProps, mapDispatchToProps)(Personal)
-export default personal;
+const billing = connect(mapStateToProps, mapDispatchToProps)(BillingAddress)
+export default billing;
