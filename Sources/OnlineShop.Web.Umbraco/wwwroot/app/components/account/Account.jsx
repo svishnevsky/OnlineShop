@@ -26,6 +26,12 @@ export default class Account extends Component {
         }
     }
 
+    componentWillReceiveProps(next) {
+        if (!next.authenticated) {
+            this.props.goToLogin();
+        }
+    }
+
     renderContent(content) {
         return (
             <article className='g_wrapper'>

@@ -653,6 +653,16 @@ header {
                     background-position: 0 -19px;
                 }
 
+            header nav a.logout {
+                margin: -1px 10px 0 -30px;
+                border-bottom: 0px;
+            }
+
+                header nav a.logout img {
+                    width: 20px;
+                    height: 25px;
+                }
+
     header .nav_trigger {
         display: none;
         float: right;
@@ -1879,23 +1889,23 @@ select {
         height: 107px;
     }
 
-                .checkout .tab_content form.checkout .method-container .method input[type=radio] {
-                    margin-right: 10px;
-                    float: left;
-                    height: 35px;
-                }
+    .checkout .tab_content form.checkout .method-container .method input[type=radio] {
+        margin-right: 10px;
+        float: left;
+        height: 35px;
+    }
 
-                .checkout .tab_content form.checkout .method-container .method label span {
-                    display: block;
-                    font-size: 14px;
-                    text-transform: uppercase;
-                }
+    .checkout .tab_content form.checkout .method-container .method label span {
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
 
-                    .checkout .tab_content form.checkout .method-container .method label span.comment {
-                        font-size: 10px;
-                        color: #7c7c7c;
-                        text-transform: none;
-                    }
+        .checkout .tab_content form.checkout .method-container .method label span.comment {
+            font-size: 10px;
+            color: #7c7c7c;
+            text-transform: none;
+        }
 
 
 

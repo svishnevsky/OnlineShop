@@ -18,6 +18,12 @@ export default class Checkout extends Component {
         }
     }
 
+    componentWillReceiveProps(next) {
+        if (!next.authenticated) {
+            this.props.goToLogin();
+        }
+    }
+
     renderContent(content) {
         const current = steps.filter(s => s.path === this.props.path)[0];
         return (

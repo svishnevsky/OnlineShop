@@ -3087,7 +3087,6 @@
     <Content Include="wwwroot\app\containers\checkout\payment.js" />
     <Content Include="wwwroot\app\containers\checkout\shipping.js" />
     <Content Include="wwwroot\app\containers\checkout\billing.js" />
-    <Content Include="wwwroot\app\containers\footer.js" />
     <Content Include="wwwroot\app\containers\header.js" />
     <Content Include="wwwroot\app\containers\info\userAgreement.js" />
     <Content Include="wwwroot\app\containers\info\about.js" />

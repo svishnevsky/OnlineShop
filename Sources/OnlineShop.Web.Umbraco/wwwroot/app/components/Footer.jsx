@@ -1,16 +1,6 @@
 ﻿import React, { Component } from 'react'
 
 export default class Footer extends Component {
-    constructor(props) {
-        super(props);
-        this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogout(e) {
-        e.preventDefault();
-        this.props.logout();
-    }
-
     render() {
         return (
             <footer className='g_wrapper'>
@@ -44,10 +34,6 @@ export default class Footer extends Component {
                         <h2>&copy; 2017 {new Date().getFullYear() > 2017 ? `-${new Date().getFullYear()}` : null} ИП Волченко Ирина Константиновна</h2>
                     </div>
                 </div>
-
-                <nav className='footer-nav'>
-                    {!this.props.authenticated ? null : <button onClick={this.handleLogout}>Выйти</button>}
-                </nav>
 
             </footer>
         );
