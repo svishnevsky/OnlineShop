@@ -545,6 +545,11 @@
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.multiproductpicker.html" />
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.productselector.dialog.html" />
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.productselector.html" />
+    <Content Include="Images\circle-progress.svg" />
+    <Content Include="Images\next_gray.png" />
+    <Content Include="Images\paymentproviders1.png" />
+    <Content Include="Images\payment_mastercard.png" />
+    <Content Include="Images\payment_visa.png" />
     <Content Include="packages.config" />
     <Content Include="config\imageprocessor\security.config" />
     <Content Include="config\imageprocessor\processing.config" />
@@ -3061,6 +3066,7 @@
     <Content Include="wwwroot\app\components\catalog\Product.jsx" />
     <Content Include="wwwroot\app\components\catalog\ProductImages.jsx" />
     <Content Include="wwwroot\app\components\catalog\ProductList.jsx" />
+    <Content Include="wwwroot\app\components\checkout\Payment.jsx" />
     <Content Include="wwwroot\app\components\checkout\ShippingAddress.jsx" />
     <Content Include="wwwroot\app\components\checkout\BillingAddress.jsx" />
     <Content Include="wwwroot\app\components\checkout\Checkout.jsx" />

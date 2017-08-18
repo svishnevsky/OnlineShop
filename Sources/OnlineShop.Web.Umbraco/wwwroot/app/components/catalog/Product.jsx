@@ -126,7 +126,7 @@ export default class Product extends Component {
                                         {sizes.filter(size => this.sizeAvaiable(size.sku))
                                             .map(size =>
                                                 <li key={size.sku}
-                                                    className={`g_black ${this.state.selected.size === size.sku ? 'selected' : null}`}
+                                                    className={`${this.state.selected.size === size.sku ? 'selected' : ''}`}
                                                     onClick={() => this.selectOption('size', size.sku)}>{size.name}</li>)}
                                     </ul>
                                     <div className='clearfix'></div>
@@ -141,7 +141,7 @@ export default class Product extends Component {
                                             .map(color =>
                                                 <li key={color.sku}
                                                     style={{ backgroundColor: `#${color.sku}` }}
-                                                    className={`${this.state.selected.color === color.sku ? 'selected' : null}`}
+                                                    className={`${this.state.selected.color === color.sku ? 'selected' : ''}`}
                                                     onClick={() => this.selectOption('color', color.sku)}
                                                     alt={color.name}></li>)}
                                     </ul>
@@ -153,7 +153,7 @@ export default class Product extends Component {
                             {this.renderAddToCart()}
 
                             {!this.props.product.description ? null :
-                                <div className={`b_info details min_block ${this.state.active.description ? 'active' : null}`}>
+                                <div className={`b_info details min_block ${this.state.active.description ? 'active' : ''}`}>
                                     <h2>
                                         <a className='black title trigger' onClick={(e) => this.toogleActive(e, 'description')}>Описание</a>
                                         <a className='min_block_trigger trigger' onClick={(e) => this.toogleActive(e, 'description')}>

@@ -15,7 +15,8 @@ namespace OnlineShop.Web.Controllers
         [Authorize]
         public IHttpActionResult GetShipping()
         {
-            var address = ((ICustomer)CustomerContext.CurrentCustomer).DefaultCustomerAddress(AddressType.Shipping);
+            var customer = ((ICustomer)CustomerContext.CurrentCustomer);
+            var address = customer.DefaultCustomerAddress(AddressType.Shipping) ?? customer.DefaultCustomerAddress(AddressType.Billing);
             var member = Members.GetCurrentMember();
             return Ok(new
             {

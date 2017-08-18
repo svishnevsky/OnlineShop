@@ -1873,6 +1873,12 @@ select {
                 margin-top: 20px;
             }
 
+    .checkout .tab_content .payment form.checkout .method-container .method input[type=radio] {
+        margin-right: 10px;
+        float: left;
+        height: 107px;
+    }
+
                 .checkout .tab_content form.checkout .method-container .method input[type=radio] {
                     margin-right: 10px;
                     float: left;
@@ -2910,6 +2916,7 @@ section.product {
         text-indent: 0;
         cursor: pointer;
         text-transform: none;
+        background: #000000
     }
 
         .product .product_info ul.choice li.selected {
@@ -2925,6 +2932,7 @@ section.product {
         min-width: 50px;
         display: inline;
         padding: 3px;
+        color: #ffffff;
     }
 
     .product .product_info ul.choice.color li {
