@@ -44,10 +44,11 @@ export default class Personal extends Account {
                 <Validation.components.Input className='input' id='name' name='name' placeholder='Имя' type='text' value={state.name} validations={['required']} errorClassName='error' />
                 
                 <label className='label' htmlFor='phone'>Телефон +375 xx xxxxxxx</label>
-                <Validation.components.Input className='input' id='phone' name='phone' placeholder='Телефон' type='text' value={state.phone} validations={['required', 'tel']} errorClassName='error' />
+                <span className='phone-prefix'>+375</span>
+                <Validation.components.Input containerClassName='phone' className='input' id='phone' name='phone' placeholder='Телефон' type='text' value={state.phone} validations={['required', 'tel']} errorClassName='error' />
 
                 <label className='label' htmlFor='city'>Город</label>
-                <Validation.components.Input className='input' id='city' name='city' placeholder='Город' type='text' value={state.city} validations={['required']} errorClassName='error' />
+                <Validation.components.Input  className='input' id='city' name='city' placeholder='Город' type='text' value={state.city} validations={['required']} errorClassName='error' />
 
                 <label className='label' htmlFor='address'>Адрес</label>
                 <Validation.components.Input className='input' id='address' name='address' placeholder='Адрес' type='text' value={state.address} validations={['required']} errorClassName='error' />

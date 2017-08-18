@@ -48,7 +48,8 @@ export default class ShippingAddress extends Checkout {
                         <Validation.components.Input className='input' id='name' name='name' placeholder='Имя' type='text' value={state.name} validations={['required']} errorClassName='error' />
 
                         <label className='label' htmlFor='phone'>Телефон +375 xx xxxxxxx</label>
-                        <Validation.components.Input className='input' id='phone' name='phone' placeholder='Телефон' type='text' value={state.phone} validations={['required', 'tel']} errorClassName='error' />
+                        <span className='phone-prefix'>+375</span>
+                        <Validation.components.Input containerClassName='phone shipping' className='input' id='phone' name='phone' placeholder='Телефон' type='text' value={state.phone} validations={['required', 'tel']} errorClassName='error' />
 
                         <label className='label' htmlFor='city'>Город</label>
                         <Validation.components.Input className='input' id='city' name='city' placeholder='Город' type='text' value={state.city} validations={['required']} errorClassName='error' />

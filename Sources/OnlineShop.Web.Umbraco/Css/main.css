@@ -1261,6 +1261,22 @@ select {
     padding: 2px;
 }
 
+.form span.phone-prefix {
+    float: left;
+    font-size: 12px;
+    margin: 4px 4px 0 0;
+    color: #7c7c7c;
+}
+
+.form div.phone {
+    float: left;
+    width: 183px;
+}
+
+    .form div.phone.shipping {
+        width: 162px;
+    }
+
 .checkbox_w {
     float: left;
     width: 100%;

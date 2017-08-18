@@ -34,7 +34,7 @@ namespace OnlineShop.Web.Controllers
         public IHttpActionResult UdateShipping(AddressModel model)
         {
             var customer = ((ICustomer)CustomerContext.CurrentCustomer);
-            var address = customer.DefaultCustomerAddress(AddressType.Shipping) ?? new CustomerAddress(customer.Key) { AddressType = AddressType.Shipping };
+            var address = customer.DefaultCustomerAddress(AddressType.Shipping) ?? new CustomerAddress(customer.Key) { AddressType = AddressType.Shipping, IsDefault = true };
             address.FullName = model.Name;
             address.Region = model.City;
             address.Phone = model.Phone;

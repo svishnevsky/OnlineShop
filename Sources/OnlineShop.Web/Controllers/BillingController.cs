@@ -33,7 +33,7 @@ namespace OnlineShop.Web.Controllers
         public IHttpActionResult UdateBilling(AddressModel model)
         {
             var customer = ((ICustomer)CustomerContext.CurrentCustomer);
-            var address = customer.DefaultCustomerAddress(AddressType.Billing) ?? new CustomerAddress(customer.Key) { AddressType = AddressType.Billing };
+            var address = customer.DefaultCustomerAddress(AddressType.Billing) ?? new CustomerAddress(customer.Key) { AddressType = AddressType.Billing, IsDefault = true };
             address.FullName = model.Name;
             address.Region = model.City;
             address.Phone = model.Phone;
