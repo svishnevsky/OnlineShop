@@ -1528,7 +1528,7 @@ select {
 
     .min_block.preview:not(.active) .content {
         display: block;
-        max-height: 64px;
+        max-height: 0;
         overflow-y: hidden;
     }
 
