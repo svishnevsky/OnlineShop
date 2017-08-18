@@ -9,6 +9,10 @@ export default class Personal extends Account {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
         this.props.update({
             name: this.form.components.name.state.value,
             phone: this.form.components.phone.state.value,
@@ -51,7 +55,7 @@ export default class Personal extends Account {
                 <label className='label' htmlFor='postCode'>Почтовый индекс</label>
                 <Validation.components.Input className='input' id='postCode' name='postCode' placeholder='Почтовый индекс' type='text' value={state.postCode} validations={['required', 'postCode']} errorClassName='error' />
 
-                <Validation.components.Button className='g_black'>Сохранить <i className='ico'></i></Validation.components.Button>
+                <button className='g_black'>Сохранить <i className='ico'></i></button>
             </Validation.components.Form>
         );
     }

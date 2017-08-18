@@ -9,6 +9,10 @@ export default class ShippingAddress extends Checkout {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
         this.props.update({
             name: this.form.components.name.state.value,
             phone: this.form.components.phone.state.value,
@@ -75,7 +79,7 @@ export default class ShippingAddress extends Checkout {
                     </div>
 
                     <div className='clearfix'></div>
-                    <Validation.components.Button className='g_black'>Далее <i className='ico'></i></Validation.components.Button>
+                    <button className='g_black'>Далее <i className='ico'></i></button>
                 </Validation.components.Form>
             </div>
         );

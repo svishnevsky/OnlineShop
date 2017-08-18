@@ -15,6 +15,10 @@ export default class Register extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
         this.props.register({
             firstName: this.form.components.regName.state.value,
             lastName: this.form.components.regLastName.state.value,
@@ -43,7 +47,7 @@ export default class Register extends Component {
                         <Validation.components.Input className='input' id='regPassword' name='regPassword' placeholder='Пароль' type='password' value={this.state.password} validations={['required', 'password']} errorClassName='error' />
                         <div className='clear'></div>
 
-                        <Validation.components.Button className='g_black'>Регистрация <i className='ico'></i></Validation.components.Button>
+                        <button className='g_black'>Регистрация <i className='ico'></i></button>
                     </Validation.components.Form>
                 </BlockUi>
                 <div className='clearfix'/>

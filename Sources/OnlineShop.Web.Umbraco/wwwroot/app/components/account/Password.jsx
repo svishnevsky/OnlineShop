@@ -9,6 +9,10 @@ export default class Password extends Account {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
         this.props.changePassword(this.form.components.password.state.value);
     }
 
@@ -18,7 +22,7 @@ export default class Password extends Account {
                 <label className='label' htmlFor='password'>Новый пароль</label>
                 <Validation.components.Input className='input' id='password' name='password' placeholder='Пароль' type='password' value='' validations={['required', 'password']} errorClassName='error' />
 
-                <Validation.components.Button className='g_black'>Сохранить <i className='ico'></i></Validation.components.Button>
+                <button className='g_black'>Сохранить <i className='ico'></i></button>
             </Validation.components.Form>
         );
     }

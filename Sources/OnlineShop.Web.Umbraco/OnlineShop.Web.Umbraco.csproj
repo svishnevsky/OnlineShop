@@ -3084,6 +3084,7 @@
     <Content Include="wwwroot\app\containers\banner.js" />
     <Content Include="wwwroot\app\containers\catalog\product.js" />
     <Content Include="wwwroot\app\containers\catalog\catalog.js" />
+    <Content Include="wwwroot\app\containers\checkout\payment.js" />
     <Content Include="wwwroot\app\containers\checkout\shipping.js" />
     <Content Include="wwwroot\app\containers\checkout\billing.js" />
     <Content Include="wwwroot\app\containers\footer.js" />

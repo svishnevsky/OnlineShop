@@ -13,6 +13,10 @@ export default class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
         this.props.login(this.form.components.username.state.value, this.form.components.password.state.value);
     }
 
@@ -28,7 +32,7 @@ export default class Login extends Component {
                         <label className='label' htmlFor='password'>Пароль</label>
                         <Validation.components.Input className='input' id='password' name='password' placeholder='Пароль' type='password' value={this.state.password} validations={['required', 'password']} errorClassName='error' />
                         <div className='clear'></div>
-                        <Validation.components.Button className='g_black'>Войти <i className='ico'></i></Validation.components.Button>
+                        <button className='g_black'>Войти <i className='ico'></i></button>
                         <div className='informer'>
                             <a href='/forgot-password'>Забыли пароль?</a>
                         </div>
