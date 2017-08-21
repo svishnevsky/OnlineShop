@@ -562,11 +562,13 @@ footer {
         display: block;
         vertical-align: middle;
         text-align: center;
+        margin-bottom: 7px;
     }
 
         footer .content > div {
             display: inline-block;
             margin: 0 10px;
+            vertical-align: top;
         }
 
             footer .content > div img {
@@ -576,6 +578,10 @@ footer {
                 footer .content > div img.payment-methods {
                     width: 134px;
                 }
+
+            footer .content > div h2 {
+                font-size: 14px;
+            }
 
         footer .content a.share {
             display: inline-block;

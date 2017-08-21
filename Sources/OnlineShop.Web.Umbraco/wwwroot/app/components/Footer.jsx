@@ -11,29 +11,22 @@ export default class Footer extends Component {
                     </div>
 
                     <div>
-                        <a target='_blank' className='share' href='#'>
+                        <a target='_blank' className='share' href='https://facebook.com'>
                             <img src='/images/F.png' />
-                        </a><a target='_blank' className='share' href='#'>
-                            <img src='/images/Gplus.png' />
-                        </a><a target='_blank' className='share' href='#'>
-                            <img src='/images/T.png' />
-                        </a><a target='_blank' className='share' href='#'>
+                        </a>
+                        <a target='_blank' className='share' href='https://instagram.com'>
                             <img src='/images/Instagram.png' />
-                        </a><a target='_blank' className='share' href='#'>
-                            <img src='/images/Tumblr.png' />
-                        </a><a target='_blank' className='share' href='#'>
-                            <img src='/images/YT.png' />
-                        </a><a target='_blank' className='share' href='#'>
+                        </a>
+                        <a target='_blank' className='share' href='https://vk.com'>
                             <img src='/images/Vkontakte.png' />
-                        </a><a target='_blank' className='share' href='#'>
-                            <img src='/images/Pinterest.png' />
                         </a>
                     </div>
 
                     <div>
-                        <h2>&copy; 2017 {new Date().getFullYear() > 2017 ? `-${new Date().getFullYear()}` : null} ИП Волченко Ирина Константиновна</h2>
+                        <h2>&copy; 2017 {new Date().getFullYear() > 2017 ? `-${new Date().getFullYear()}` : null} ИП Волченко Ирина Константиновна УНП 591199936</h2>                      
                     </div>
                 </div>
+                <div className='content'>Работаем 24/7</div>
 
             </footer>
         );
