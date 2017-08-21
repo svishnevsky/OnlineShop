@@ -63,6 +63,7 @@ html {
     margin: 0;
     padding: 0;
     font-family: 'verdana';
+    overflow-y: scroll;
 }
 
     html input[type="button"] {
@@ -679,7 +680,7 @@ header {
         text-align: center;
         text-transform: uppercase;
         border: 1px solid #dfdfdf;
-        margin: 36px 0 0;
+        margin: 36px 10px 0 0;
     }
 
         header .nav_trigger:hover {
@@ -4675,4 +4676,39 @@ input[type="search"] {
     padding: 10px;
     background: #000;
     background: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 640px) {
+    header {
+        max-width: 640px;
+    }
+
+        header .content {
+            width: 380px;
+        }
+
+            header .content .logo {
+                clear: both;
+            }
+
+            header .content .nav_trigger {
+                display: block;
+            }
+
+            header .content .menu_b {
+                display: none;
+                float: left;
+                width: 283px;
+            }
+
+                header .content .menu_b .a {
+                    width: 139px;
+                    margin: 0;
+                    padding: 10px 0;
+                    height: 19px;
+                    text-align: center;
+                    border-width: 0 0 1px 1px;
+                    border-style: solid;
+                    border-color: #dfdfdf;
+                }
 }
