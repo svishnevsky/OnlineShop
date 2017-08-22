@@ -175,7 +175,7 @@ export default class Product extends Component {
                                     <span className='black title trigger' onClick={(e) => this.toogleActive(e, 'relatedProducts')}>Вам так же может быть интересно</span> <span className='min_block_trigger trigger' onClick={(e) => this.toogleActive(e, 'relatedProducts')}><i className='ico'></i></span>
                                 </h2>
                                 <div className='content min_block_c more_prod'>
-                                    <ProductList products={this.props.product.relatedProducts} cropWidth='200' />
+                                    <ProductList products={this.props.product.relatedProducts} cropWidth='158' />
                                 </div>
                             </div>
                         }
