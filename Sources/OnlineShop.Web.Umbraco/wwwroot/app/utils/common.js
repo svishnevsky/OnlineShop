@@ -2,10 +2,10 @@
     var parts = (price + '').split('.');
     var major = `${parts[0]}р.`;
     if (parts.length === 1) {
-        return major;
+        parts[1] = 0;
     }
 
-    return `${major} ${parts[1]}к.`;
+    return `${major} ${parts[1] < 10 ? parts[1] + '0' : parts[1]}к.`;
 }
 
 export const getCropUrl = (url, width, height) => {

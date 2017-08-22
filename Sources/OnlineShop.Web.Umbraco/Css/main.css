@@ -583,6 +583,9 @@ footer {
             footer .content > div h2 {
                 font-size: 14px;
             }
+            footer .content > div p {
+                font-size: 10px;
+            }
 
         footer .content a.share {
             display: inline-block;
@@ -592,6 +595,10 @@ footer {
                 max-height: 20px;
                 width: 20px;
                 margin: 0 10px;
+            }
+
+            footer .content.working {
+                font-size: 14px;
             }
 
 header {

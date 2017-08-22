@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -547,7 +548,6 @@
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.productselector.html" />
     <Content Include="Images\circle-progress.svg" />
     <Content Include="Images\next_gray.png" />
-    <Content Include="Images\paymentproviders1.png" />
     <Content Include="Images\payment_mastercard.png" />
     <Content Include="Images\payment_visa.png" />
     <Content Include="packages.config" />
@@ -3283,18 +3283,13 @@
     <Content Include="Global.asax" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\F.png" />
-    <Content Include="Images\Gplus.png" />
     <Content Include="Images\Instagram.png" />
     <Content Include="Images\large.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\paymentproviders.png" />
-    <Content Include="Images\Pinterest.png" />
     <Content Include="Images\spinner.gif" />
     <Content Include="Images\sprite.png" />
-    <Content Include="Images\T.png" />
-    <Content Include="Images\Tumblr.png" />
     <Content Include="Images\Vkontakte.png" />
-    <Content Include="Images\YT.png" />
     <Content Include="Css\fonts\BodoniFLF-BoldItalic.ttf" />
     <Content Include="Css\fonts\BodoniFLF-Italic.ttf" />
     <Content Include="Css\fonts\FuturaStd-Book_0.otf" />
