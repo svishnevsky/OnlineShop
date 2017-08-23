@@ -1,7 +1,14 @@
 ﻿using OnlineShop.Web.Models;
 using System;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -93,6 +100,51 @@ namespace OnlineShop.Web.Controllers
         {
             var member = Services.MemberService.GetById(Members.GetCurrentMemberId());
             Services.MemberService.SavePassword(member, model.Password);
+            return Ok();
+        }
+
+        [HttpPut]
+        [ActionName("Users")]
+        [Authorize]
+        public IHttpActionResult RestorePassword([FromBody]RestorePasswordModel model)
+        {
+            var member = Services.MemberService.GetByUsername(model.Username);
+            var password = Membership.GeneratePassword(8, 2);
+            //Services.MemberService.SavePassword(member, password);
+
+            //var body = "<p>Email From: {0} ({1})</p><p>Message:</p><b>{2}</b>";
+            //using (var writer = new StringWriter())
+            //{
+            //    var routeData = new RouteData();
+            //    routeData.Values.Add("controller", controllerName);
+            //    var fakeControllerContext = new ControllerContext(new HttpContextWrapper(new HttpContext(new HttpRequest(null, "http://google.com", null), new HttpResponse(null))), this);
+            //    var razorViewEngine = new RazorViewEngine();
+            //    var razorViewResult = razorViewEngine.FindView(fakeControllerContext, "ForgotPassword", "", false);
+
+            //    var viewContext = new ViewContext(fakeControllerContext, razorViewResult.View, new ViewDataDictionary(), new TempDataDictionary(), writer);
+            //    razorViewResult.View.Render(viewContext, writer);
+            //    return writer.ToString();
+            //}
+
+            //var message = new MailMessage();
+            //message.To.Add(new MailAddress("something@gmail.com"));  // replace with valid value 
+            //message.From = new MailAddress(model.Username);  // replace with valid value
+            //message.Subject = "Восстановление пароля Irene Italiano BOUTIQUE BIJOUTERIE";
+            //message.Body = string.Format(body, name, email, message);
+            //message.IsBodyHtml = true;
+
+            //using (var smtp = new SmtpClient())
+            //{
+            //    var credential = new NetworkCredential
+            //    {
+            //        UserName = "something@gmail.com",  // replace with valid value
+            //        Password = "********"  // replace with valid value
+            //    };
+            //    smtp.Credentials = credential;
+            //    smtp.Host = "smtp.gmail.com ";
+            //    smtp.Port = 587;
+            //    smtp.EnableSsl = true;
+            //}
             return Ok();
         }
     }

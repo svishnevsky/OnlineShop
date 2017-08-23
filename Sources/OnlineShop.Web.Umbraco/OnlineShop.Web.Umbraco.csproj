@@ -546,6 +546,7 @@
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.multiproductpicker.html" />
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.productselector.dialog.html" />
     <Content Include="App_Plugins\Merchello\propertyeditors\productpicker\merchello.productselector.html" />
+    <Content Include="Content\Site.css" />
     <Content Include="Images\circle-progress.svg" />
     <Content Include="Images\next_gray.png" />
     <Content Include="Images\payment_mastercard.png" />
@@ -3058,6 +3059,7 @@
     <Content Include="wwwroot\app\components\account\Personal.jsx" />
     <Content Include="wwwroot\app\components\App.jsx" />
     <Content Include="wwwroot\app\components\auth\Auth.jsx" />
+    <Content Include="wwwroot\app\components\auth\Forgot.jsx" />
     <Content Include="wwwroot\app\components\auth\Login.jsx" />
     <Content Include="wwwroot\app\components\auth\Register.jsx" />
     <Content Include="wwwroot\app\components\basket\BasketItem.jsx" />
@@ -3079,6 +3081,7 @@
     <Content Include="wwwroot\app\containers\account\password.js" />
     <Content Include="wwwroot\app\containers\account\personal.js" />
     <Content Include="wwwroot\app\containers\auth\auth.js" />
+    <Content Include="wwwroot\app\containers\auth\forgot.js" />
     <Content Include="wwwroot\app\containers\auth\login.js" />
     <Content Include="wwwroot\app\containers\auth\register.js" />
     <Content Include="wwwroot\app\containers\banner.js" />
@@ -3244,6 +3247,9 @@
     <Content Include="package.json" />
     <Content Include="wwwroot\app\utils\common.js" />
     <Content Include="wwwroot\app\utils\ValidationRules.jsx" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Partials\Emails\ForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3322,7 +3328,6 @@
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
   <ItemGroup>

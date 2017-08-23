@@ -83,3 +83,9 @@ export function sendRegister(user) {
             });
     }
 }
+
+export function restorePassword(username) {
+    return function () {
+        return fetch('/umbraco/api/client/users', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: "same-origin", body: JSON.stringify({ username }) });
+    }
+}

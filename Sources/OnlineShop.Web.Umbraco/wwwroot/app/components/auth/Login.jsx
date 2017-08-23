@@ -34,7 +34,7 @@ export default class Login extends Component {
                         <div className='clear'></div>
                         <button className='g_black'>Войти <i className='ico'></i></button>
                         <div className='informer'>
-                            <a href='/forgot-password'>Забыли пароль?</a>
+                            <a href='#/auth/forgot-password'>Забыли пароль?</a>
                         </div>
                     </Validation.components.Form>
                 </BlockUi>

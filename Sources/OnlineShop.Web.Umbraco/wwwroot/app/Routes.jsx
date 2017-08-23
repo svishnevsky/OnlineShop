@@ -2,6 +2,7 @@
 import { Route, Switch } from 'react-router-dom';
 import banner from './containers/banner'
 import auth from './containers/auth/auth'
+import forgot from './containers/auth/forgot'
 import catalog from './containers/catalog/catalog'
 import product from './containers/catalog/product'
 import userAgreement from './containers/info/userAgreement'
@@ -17,6 +18,7 @@ export default (
     <Switch>
         <Route exact path='/' component={banner} />
         <Route exact path='/auth' component={auth} />
+        <Route exact path='/auth/forgot-password' component={forgot} />
         <Route exact path='/catalog/:name/:product' component={product} />
         <Route exact path='/catalog/:name' component={catalog} />
         <Route exact path='/catalog' component={catalog} />
