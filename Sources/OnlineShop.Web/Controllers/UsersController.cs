@@ -1,5 +1,6 @@
 ﻿using OnlineShop.Web.Models;
 using System;
+using System.Dynamic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -18,8 +19,8 @@ namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController
     {
-        [HttpGet]
-        [ActionName("Users")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.ActionName("Users")]
         public IHttpActionResult GetUser()
         {
             IPublishedContent member = null;
@@ -44,8 +45,8 @@ namespace OnlineShop.Web.Controllers
             return Ok(new { name = $"{member.GetPropertyValue<string>("firstName")}" });
         }
 
-        [HttpPost]
-        [ActionName("Users")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.ActionName("Users")]
         public IHttpActionResult AddUser([FromBody]NewUser model)
         {
             if (!ModelState.IsValid)
@@ -84,18 +85,18 @@ namespace OnlineShop.Web.Controllers
             }
         }
 
-        [HttpDelete]
-        [ActionName("Users")]
-        [Authorize]
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.ActionName("Users")]
+        [System.Web.Http.Authorize]
         public IHttpActionResult Logout()
         {
             Members.Logout();
             return Ok();
         }
 
-        [HttpPatch]
-        [ActionName("Users")]
-        [Authorize]
+        [System.Web.Http.HttpPatch]
+        [System.Web.Http.ActionName("Users")]
+        [System.Web.Http.Authorize]
         public IHttpActionResult ChangePassword([FromBody]ChangePasswordModel model)
         {
             var member = Services.MemberService.GetById(Members.GetCurrentMemberId());
@@ -103,49 +104,51 @@ namespace OnlineShop.Web.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        [ActionName("Users")]
-        [Authorize]
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.ActionName("Users")]
         public IHttpActionResult RestorePassword([FromBody]RestorePasswordModel model)
         {
             var member = Services.MemberService.GetByUsername(model.Username);
+            if (member == null)
+            {
+                return NotValid();
+            }
+
             var password = Membership.GeneratePassword(8, 2);
-            //Services.MemberService.SavePassword(member, password);
+            Services.MemberService.SavePassword(member, password);
 
-            //var body = "<p>Email From: {0} ({1})</p><p>Message:</p><b>{2}</b>";
-            //using (var writer = new StringWriter())
-            //{
-            //    var routeData = new RouteData();
-            //    routeData.Values.Add("controller", controllerName);
-            //    var fakeControllerContext = new ControllerContext(new HttpContextWrapper(new HttpContext(new HttpRequest(null, "http://google.com", null), new HttpResponse(null))), this);
-            //    var razorViewEngine = new RazorViewEngine();
-            //    var razorViewResult = razorViewEngine.FindView(fakeControllerContext, "ForgotPassword", "", false);
+            string body;
+            using (var writer = new StringWriter())
+            {
+                var routeData = new RouteData();
+                routeData.Values.Add("controller", "Fake");
+                var fakeControllerContext = new ControllerContext(new HttpContextWrapper(new HttpContext(new HttpRequest(null, "https://iibb.by", null), new HttpResponse(null))), routeData, new FakeController());
+                var razorViewEngine = new RazorViewEngine();
+                var razorViewResult = razorViewEngine.FindView(fakeControllerContext, "EmailForgotPassword", "", false);
 
-            //    var viewContext = new ViewContext(fakeControllerContext, razorViewResult.View, new ViewDataDictionary(), new TempDataDictionary(), writer);
-            //    razorViewResult.View.Render(viewContext, writer);
-            //    return writer.ToString();
-            //}
+                dynamic data = new ExpandoObject();
+                data.Name = member.Name;
+                data.Password = password;
+                var viewContext = new ViewContext(fakeControllerContext, razorViewResult.View, new ViewDataDictionary(data), new TempDataDictionary(), writer);
+                razorViewResult.View.Render(viewContext, writer);
+                body = writer.ToString();
+            }
 
-            //var message = new MailMessage();
-            //message.To.Add(new MailAddress("something@gmail.com"));  // replace with valid value 
-            //message.From = new MailAddress(model.Username);  // replace with valid value
-            //message.Subject = "Восстановление пароля Irene Italiano BOUTIQUE BIJOUTERIE";
-            //message.Body = string.Format(body, name, email, message);
-            //message.IsBodyHtml = true;
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(model.Username));
+            message.From = new MailAddress("no-reply@iibb.by"); 
+            message.Subject = "Восстановление пароля Irene Italiano BOUTIQUE BIJOUTERIE";
+            message.Body = body;
+            message.IsBodyHtml = true;
 
-            //using (var smtp = new SmtpClient())
-            //{
-            //    var credential = new NetworkCredential
-            //    {
-            //        UserName = "something@gmail.com",  // replace with valid value
-            //        Password = "********"  // replace with valid value
-            //    };
-            //    smtp.Credentials = credential;
-            //    smtp.Host = "smtp.gmail.com ";
-            //    smtp.Port = 587;
-            //    smtp.EnableSsl = true;
-            //}
+            using (var smtp = new SmtpClient())
+            {
+                smtp.Send(message);
+            }
+
             return Ok();
         }
-    }
+
+        private class FakeController : ControllerBase { protected override void ExecuteCore() { } }
+    }    
 }

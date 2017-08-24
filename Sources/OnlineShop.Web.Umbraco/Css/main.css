@@ -3107,7 +3107,6 @@ section.hashbalr {
     max-width: 900px;
     margin: 10px auto;
     padding: 10px;
-    background: #EAF7D9 url(../images/success.png) 10px center no-repeat;
     border: 1px solid #BBDF8D;
 }
 
@@ -3147,7 +3146,6 @@ section.hashbalr {
     max-width: 900px;
     margin: 10px auto;
     padding: 10px;
-    background: #FFF5CC url(../images/attention.png) 10px center no-repeat;
     border: 1px solid #F2DD8C;
 }
 
@@ -3185,7 +3183,6 @@ section.hashbalr {
     max-width: 900px;
     margin: 10px auto;
     padding: 10px;
-    background: #FFF5CC url(../images/attention.png) 10px center no-repeat;
     border: 1px solid #F2DD8C;
 }
 

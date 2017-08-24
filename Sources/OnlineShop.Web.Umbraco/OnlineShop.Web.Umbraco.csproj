@@ -3249,7 +3249,7 @@
     <Content Include="wwwroot\app\utils\ValidationRules.jsx" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Partials\Emails\ForgotPassword.cshtml" />
+    <Content Include="Views\Shared\EmailForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
