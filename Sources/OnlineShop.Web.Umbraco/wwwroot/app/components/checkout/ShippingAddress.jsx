@@ -2,9 +2,30 @@
 import Checkout from './Checkout.jsx'
 import Validation from 'react-validation';
 
+const shippingMethods = [{
+    key: 'belpost',
+    name: 'Белпочта',
+    term: '2-5 дней'
+},
+{
+    key: 'carrier',
+    name: 'Курьер',
+    term: '2-3 дня'
+}];
+
 export default class ShippingAddress extends Checkout {
     constructor(props) {
         super(props);
+        this.setMethod = this.setMethod.bind(this);
+        this.state = {
+            method: 'belpost'
+        }
+    }
+
+    setMethod(event) {
+        this.setState({
+            method: event.target.value
+        });
     }
 
     handleSubmit(event) {
@@ -21,7 +42,13 @@ export default class ShippingAddress extends Checkout {
             postCode: this.form.components.postCode.state.value
         });
 
+        this.props.setShippingMethod(this.state.method);
         this.props.goNext();
+    }
+
+    back(event) {
+        event.preventDefault();
+        this.props.goBack();
     }
 
     componentWillMount() {
@@ -62,25 +89,21 @@ export default class ShippingAddress extends Checkout {
                     </div>
 
                     <div className='method-container half'>
-                        <div className='method'>
-                            <Validation.components.Input type='radio' validations={['required']} name='shipping_method' value='belpost' id='method-belpost' />
-                            <label htmlFor='method-belpost' className='title'>
-                                <span>Белпочта</span>
-                                <span className='comment'>2-5 дней</span>
-                            </label>
-                        </div>
-
-                        <div className='method'>
-                            <Validation.components.Input type='radio' validations={['required']} name='shipping_method' checked='checked' value='carier' id='method-carier' />
-                            <label htmlFor='method-carier' className='title'>
-                                <span>Курьер</span>
-                                <span className='comment'>2-3 дня</span>
-                            </label>
-                        </div>
+                        {shippingMethods.map((m, i) => <div key={i} className='method'>
+                                <input type='radio' name='shippingMethod' value={m.key} id={`method-${m.key}`} checked={this.state.method === m.key} onChange={this.setMethod} />
+                                <label htmlFor={`method-${m.key}`} className='title'>
+                                    <span>{m.name}</span>
+                                    <span className='comment'>{m.term}</span>
+                                </label>
+                            </div>)}
                     </div>
 
+
+
                     <div className='clearfix'></div>
-                    <button className='g_black'>Далее <i className='ico'></i></button>
+                    <a className='g_black back' onClick={this.back.bind(this)}>Назад <i className='ico'></i></a>
+                    <button className='g_black next'>Далее <i className='ico'></i></button>
+                    <div className='clearfix'></div>
                 </Validation.components.Form>
             </div>
         );

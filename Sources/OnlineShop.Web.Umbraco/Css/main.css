@@ -1891,11 +1891,24 @@ select {
         margin-left: -230px;
     }
 
-        .checkout .tab_content form.checkout button {
-            left: 50%;
-            margin-left: -115px;
-            width: 50%;
+        .checkout .tab_content form.checkout .next {
+            width: 40%;
+            float: right;
         }
+
+        .checkout .tab_content form.checkout .back {
+            width: 40%;
+            display: inline-block;
+            text-align: right;
+            direction: rtl;
+            float: left;
+            margin: 10px 0 25px;
+        }
+            .checkout .tab_content form.checkout .back .ico {
+                background: url(../images/sprite.png) -148px 0;
+                left: 12px;
+                right: unset;
+            }
 
         .checkout .tab_content form.checkout .method-container {
             float: left;
@@ -1916,7 +1929,6 @@ select {
     .checkout .tab_content .payment form.checkout .method-container .method input[type=radio] {
         margin-right: 10px;
         float: left;
-        height: 107px;
     }
 
     .checkout .tab_content form.checkout .method-container .method input[type=radio] {

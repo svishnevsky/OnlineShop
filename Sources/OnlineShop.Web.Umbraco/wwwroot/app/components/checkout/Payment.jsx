@@ -2,31 +2,68 @@
 import Checkout from './Checkout.jsx'
 import Validation from 'react-validation';
 
+const paymentMethods = [{
+    key: 'belpost',
+    name: 'Наложенный платеж'
+},
+{
+    key: 'card',
+    name: 'Банковская карта (Webpay)'
+},
+{
+    key: 'erip',
+    name: 'Система "Расчет" (ЕРИП)'
+}];
+
 export default class Payment extends Checkout {
     constructor(props) {
         super(props);
+        this.setMethod = this.setMethod.bind(this);
+        this.state = {
+            method: 'erip'
+        }
+    }
+
+    setMethod(event) {
+        this.setState({
+            method: event.target.value
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        if (Object.keys(this.form.validateAll()).length > 0) {
+            return;
+        }
+
+        this.props.setPaymentMethod(this.state.method);
+        this.props.goNext();
+    }
+
+    back(event) {
+        event.preventDefault();
+        this.props.goBack();
     }
 
     render() {
         return super.renderContent(
             <div className='simplecheckout-methods-table two payment'>
-                <Validation.components.Form ref={c => { this.form = c }} className='form checkout'>
-                    <div className='method-container half'>
-                        <div className='method'>
-                            <Validation.components.Input type='radio' validations={['required']} name='shipping_method' value='belpost' id='method-belpost' />
-                            <img src='/images/payment_visa.png' width='150px'/>
-                        </div>
-                    </div>
+                <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)} className='form checkout'>
 
-                    <div className='method-container half'>
+                    {paymentMethods.map((m, i) => <div key={i} className='method-container'>
                         <div className='method'>
-                            <Validation.components.Input type='radio' validations={['required']} name='shipping_method' value='belpost' id='method-belpost' />
-                            <img src='/images/payment_mastercard.png' width='150px' />
+                            <input type='radio' name='paymentMethod' value={m.key} id={`method-${m.key}`} checked={this.state.method === m.key} onChange={this.setMethod} />
+                            <label htmlFor={`method-${m.key}`} className='title'>
+                                <span>{m.name}</span>
+                            </label>
                         </div>
-                    </div>
+                    </div>)}
 
                     <div className='clearfix'></div>
-                    
+                    <a className='g_black back' onClick={this.back.bind(this)}>Назад <i className='ico'></i></a>
+                    <button className='g_black next'>Далее <i className='ico'></i></button>
+                    <div className='clearfix'></div>
+
                 </Validation.components.Form>
             </div>
         );

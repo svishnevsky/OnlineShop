@@ -20,11 +20,17 @@ const mapDispatchToProps = (dispatch) => {
         goNext: () => {
             dispatch(push('/checkout/payment'));
         },
+        goBack: () => {
+            dispatch(push('/checkout'));
+        },
         fetchBilling: () => {
             dispatch(fetchAddress('shipping'));
         },
         update: (address) => {
             dispatch(updateAddress(address, 'shipping'));
+        },
+        setShippingMethod: (method) => {
+            console.log(method);
         }
     }
 };
