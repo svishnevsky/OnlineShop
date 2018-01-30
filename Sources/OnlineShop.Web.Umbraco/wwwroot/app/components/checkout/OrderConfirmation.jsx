@@ -6,11 +6,16 @@ import { formatPrice, getCropUrl } from '../../utils/common'
 export default class OrderConfirmation extends Checkout {
     constructor(props) {
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     back(event) {
         event.preventDefault();
         this.props.goBack();
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
     }
 
     componentWillMount() {
@@ -43,7 +48,7 @@ export default class OrderConfirmation extends Checkout {
         };
         return super.renderContent(
             <div className='simplecheckout-methods-table two'>
-                <form className='form checkout'>
+                <form className='form checkout' onSubmit={this.handleSubmit}>
                     <div className='method-container half'>
                         <h2>Плательщик:</h2>
                         <p>{model.billing.name}</p>
@@ -95,7 +100,8 @@ export default class OrderConfirmation extends Checkout {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan='4'>Итого: {formatPrice(model.basket.totalPrice)}</td>
+                                <td colSpan='3'>Итого:</td>
+                                <td>{formatPrice(model.basket.totalPrice)}</td>
                             </tr>
                         </tfoot>
                     </table>

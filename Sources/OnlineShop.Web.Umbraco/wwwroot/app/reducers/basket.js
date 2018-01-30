@@ -8,7 +8,7 @@ const shippingMethods = [{
 {
     key: 'carrier',
     name: 'Курьер',
-    term: '2-3 дня'
+    term: '1-3 дня'
 }];
 
 const paymentMethods = [{

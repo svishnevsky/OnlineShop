@@ -233,7 +233,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
-    <Compile Include="Controllers\GaytwayController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ShippingController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
