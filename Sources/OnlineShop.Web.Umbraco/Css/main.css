@@ -1904,6 +1904,7 @@ select {
             float: left;
             margin: 10px 0 25px;
         }
+
             .checkout .tab_content form.checkout .back .ico {
                 background: url(../images/sprite.png) -148px 0;
                 left: 12px;
@@ -1924,6 +1925,61 @@ select {
 
             .checkout .tab_content form.checkout .method-container .method {
                 margin-top: 20px;
+            }
+
+        .checkout .tab_content form.checkout h2 {
+            margin: 5px auto;
+            width: 100%;
+            position: relative;
+            font-size: 18px;
+            text-align: center;
+            color: #880016;
+        }
+
+        .checkout .tab_content form.checkout h3 {
+            margin: 4px 0 2px 0;
+            width: 100%;
+            position: relative;
+            font-size: 14px;
+            text-align: left;
+            color: #880016;
+            font-weight: 600;
+        }
+
+        .checkout .tab_content form.checkout .method-container p {
+            font-size: 14px;
+        }
+
+        .checkout .tab_content form.checkout table.products {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+            .checkout .tab_content form.checkout table.products thead td {
+                text-align: center;
+                color: #880016;
+            }
+
+            .checkout .tab_content form.checkout table.products tbody td {
+                padding: 3px;
+                text-align: center;
+            }
+
+                .checkout .tab_content form.checkout table.products tbody td:nth-child(2) {
+                    text-align: left;
+                    width: 100%;
+                    vertical-align: top;
+                }
+
+                .checkout .tab_content form.checkout table.products tbody td:nth-child(3) {
+                    min-width: 90px;
+                }
+
+            .checkout .tab_content form.checkout table.products tfoot td {
+                text-align: right;
+                color: #880016;
+                font-weight: 600;
             }
 
     .checkout .tab_content .payment form.checkout .method-container .method input[type=radio] {
@@ -4776,9 +4832,9 @@ input[type="search"] {
         width: 100%
     }
 
-    section.bag .products .legend {
-        display: none;
-    }
+        section.bag .products .legend {
+            display: none;
+        }
 
     section.bag .total {
         float: left;

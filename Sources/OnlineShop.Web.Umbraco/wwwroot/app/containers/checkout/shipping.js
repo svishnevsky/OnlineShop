@@ -2,13 +2,15 @@
 import { push } from 'react-router-redux'
 import ShippingAddress from '../../components/checkout/ShippingAddress.jsx'
 import { fetchAddress, updateAddress } from '../../actions/account'
+import { setShippingMethod } from '../../actions/basket'
 
 const mapStateToProps = (state, ownProps) => {
     return {
         path: ownProps.match.url,
         authenticated: state.auth.name && true,
         address: state.account.shipping,
-        loading: state.account.shippingLoading
+        loading: state.account.shippingLoading,
+        shippingMethods: state.basket.shippingMethods
     }
 }
 
@@ -30,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(updateAddress(address, 'shipping'));
         },
         setShippingMethod: (method) => {
-            console.log(method);
+            dispatch(setShippingMethod(method));
         }
     }
 };

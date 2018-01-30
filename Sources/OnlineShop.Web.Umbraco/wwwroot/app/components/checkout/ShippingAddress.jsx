@@ -2,17 +2,6 @@
 import Checkout from './Checkout.jsx'
 import Validation from 'react-validation';
 
-const shippingMethods = [{
-    key: 'belpost',
-    name: 'Белпочта',
-    term: '2-5 дней'
-},
-{
-    key: 'carrier',
-    name: 'Курьер',
-    term: '2-3 дня'
-}];
-
 export default class ShippingAddress extends Checkout {
     constructor(props) {
         super(props);
@@ -89,7 +78,7 @@ export default class ShippingAddress extends Checkout {
                     </div>
 
                     <div className='method-container half'>
-                        {shippingMethods.map((m, i) => <div key={i} className='method'>
+                        {this.props.shippingMethods.map((m, i) => <div key={i} className='method'>
                                 <input type='radio' name='shippingMethod' value={m.key} id={`method-${m.key}`} checked={this.state.method === m.key} onChange={this.setMethod} />
                                 <label htmlFor={`method-${m.key}`} className='title'>
                                     <span>{m.name}</span>

@@ -2,19 +2,6 @@
 import Checkout from './Checkout.jsx'
 import Validation from 'react-validation';
 
-const paymentMethods = [{
-    key: 'belpost',
-    name: 'Наложенный платеж'
-},
-{
-    key: 'card',
-    name: 'Банковская карта (Webpay)'
-},
-{
-    key: 'erip',
-    name: 'Система "Расчет" (ЕРИП)'
-}];
-
 export default class Payment extends Checkout {
     constructor(props) {
         super(props);
@@ -45,12 +32,19 @@ export default class Payment extends Checkout {
         this.props.goBack();
     }
 
+    componentWillMount() {
+        if (!this.props.shippingMethod) {
+            this.props.goBack();
+            return;
+        }
+    }
+
     render() {
         return super.renderContent(
             <div className='simplecheckout-methods-table two payment'>
                 <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)} className='form checkout'>
 
-                    {paymentMethods.map((m, i) => <div key={i} className='method-container'>
+                    {this.props.paymentMethods.map((m, i) => <div key={i} className='method-container'>
                         <div className='method'>
                             <input type='radio' name='paymentMethod' value={m.key} id={`method-${m.key}`} checked={this.state.method === m.key} onChange={this.setMethod} />
                             <label htmlFor={`method-${m.key}`} className='title'>

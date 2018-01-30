@@ -14,6 +14,20 @@ export const requestBasketUpdate = () => {
     }
 }
 
+export const setShippingMethod = (method) => {
+    return {
+        type: types.BASKET_SET_SHIPPING_METHOD,
+        method
+    }
+}
+
+export const setPaymentMethod = (method) => {
+    return {
+        type: types.BASKET_SET_PAYMENT_METHOD,
+        method
+    }
+}
+
 export function addToBasket(product, qty) {
     return function (dispatch) {
         dispatch(requestBasketUpdate());
