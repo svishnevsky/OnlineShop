@@ -2,7 +2,7 @@
 import BlockUi from 'react-block-ui'
 
 const steps = [
-    { type: 'step', number: 1, path: '/checkout', title: 'Плательщик', name: 'Информация об плательщике' },
+    { type: 'step', number: 1, path: '/checkout', title: 'Плательщик', name: 'Информация о плательщике' },
     { type: 'delimiter'},
     { type: 'step', number: 2, path: '/checkout/shipping', title: 'Доставка', name: 'Адрес и способ доставки' },
     { type: 'delimiter'},

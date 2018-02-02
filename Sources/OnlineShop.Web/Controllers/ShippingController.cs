@@ -1,8 +1,6 @@
 ﻿using Merchello.Core;
 using Merchello.Core.Models;
 using OnlineShop.Web.Models;
-using System;
-using System.Linq;
 using System.Web.Http;
 using Umbraco.Web;
 
@@ -15,12 +13,11 @@ namespace OnlineShop.Web.Controllers
         [Authorize]
         public IHttpActionResult GetShipping()
         {
-            var customer = ((ICustomer)CustomerContext.CurrentCustomer);
-            var address = customer.DefaultCustomerAddress(AddressType.Shipping) ?? customer.DefaultCustomerAddress(AddressType.Billing);
+            var address = this.CheckoutManager.Customer.GetShipToAddress();
             var member = Members.GetCurrentMember();
             return Ok(new
             {
-                name = address?.FullName ?? $"{member.GetPropertyValue<string>("firstName")} {member.GetPropertyValue<string>("lastName")}".Trim(),
+                name = address?.Name ?? $"{member.GetPropertyValue<string>("firstName")} {member.GetPropertyValue<string>("lastName")}".Trim(),
                 city = address?.Region,
                 address = address?.Address1,
                 phone = address?.Phone,
@@ -33,21 +30,31 @@ namespace OnlineShop.Web.Controllers
         [Authorize]
         public IHttpActionResult UdateShipping(AddressModel model)
         {
-            var customer = ((ICustomer)CustomerContext.CurrentCustomer);
-            var address = customer.DefaultCustomerAddress(AddressType.Shipping) ?? new CustomerAddress(customer.Key) { AddressType = AddressType.Shipping, IsDefault = true };
-            address.FullName = model.Name;
-            address.Region = model.City;
-            address.Phone = model.Phone;
-            address.Address1 = model.Address;
-            address.PostalCode = model.PostCode;
-            customer.SaveCustomerAddress(address);
-            var member = Members.GetCurrentMemberProfileModel();
-            var nameParts = model.Name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            member.MemberProperties.First( p => p.Alias == "firstName").Value = nameParts.First();
-            member.MemberProperties.First(p => p.Alias == "lastName").Value = nameParts.Count() > 1 ? nameParts[1] : null;
-            Members.UpdateMemberProfile(member);
+            var address = new Address
+            {
+                Address1 = model.Address,
+                Phone = model.Phone,
+                PostalCode = model.PostCode,
+                Region = model.City,
+                Name = model.Name
+            };
+
+            this.CheckoutManager.Customer.SaveShipToAddress(address);
+            if (!CurrentCustomer.IsAnonymous)
+            {
+                var customer = (ICustomer)CurrentCustomer;
+                var existing = customer.DefaultCustomerAddress(AddressType.Shipping);
+                var caddress = ToCustomerAddress(address, (ICustomer)CurrentCustomer, "Адрес доставки", AddressType.Shipping);
+                if (existing != null)
+                {
+                    caddress.CreateDate = existing.CreateDate;
+                    caddress.Key = existing.Key;
+                }
+
+                ((ICustomer)CurrentCustomer).SaveCustomerAddress(caddress);
+            }
+
             return Ok();
         }
-
     }
 }

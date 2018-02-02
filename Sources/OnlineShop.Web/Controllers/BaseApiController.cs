@@ -1,4 +1,5 @@
-﻿using Merchello.Web;
+﻿using Merchello.Core.Models;
+using Merchello.Web;
 using Merchello.Web.Pluggable;
 using Newtonsoft.Json;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace OnlineShop.Web.Controllers
     {
         protected MerchelloHelper Helper => new MerchelloHelper();
         protected ICustomerContext CustomerContext => PluggableObjectHelper.GetInstance<CustomerContextBase>("CustomerContext", UmbracoContext);
+        protected ICustomerBase CurrentCustomer =>  this.CustomerContext.CurrentCustomer;
 
         public IHttpActionResult NotValid()
         {

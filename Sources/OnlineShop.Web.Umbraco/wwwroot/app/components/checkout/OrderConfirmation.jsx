@@ -16,6 +16,10 @@ export default class OrderConfirmation extends Checkout {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.props.confirmOrder({
+            paymentMethod: this.props.basket.paymentMethod.key,
+            shippingMethod: this.props.basket.shippingMethod.key
+        });
     }
 
     componentWillMount() {
@@ -44,7 +48,8 @@ export default class OrderConfirmation extends Checkout {
             billing: this.props.billing || {},
             basket: this.props.basket || {},
             paymentMethod: this.props.basket.paymentMethod ? this.props.basket.paymentMethod : {},
-            shippingMethod: this.props.basket.shippingMethod ? this.props.basket.shippingMethod : {}
+            shippingMethod: this.props.basket.shippingMethod ? this.props.basket.shippingMethod : {},
+            loading: this.props.loading
         };
         return super.renderContent(
             <div className='simplecheckout-methods-table two'>

@@ -3,6 +3,7 @@ using Merchello.Core.Checkout;
 using Merchello.Core.Gateways.Shipping;
 using Merchello.Web;
 using Merchello.Web.Factories;
+using OnlineShop.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -42,6 +43,14 @@ namespace OnlineShop.Web.Controllers
                 .Select(x => shippingProvidersMap[x.Name])
                 .ToList();
             return Ok(new { providers = providers });
+        }
+
+        [HttpPost]
+        [ActionName("confirmOrder")]
+        public IHttpActionResult ConfirmCheckout(CheckoutModel model)
+        {
+
+            return Ok();
         }
     }
 }

@@ -3046,6 +3046,7 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="webpack.config.js" />
+    <Content Include="wwwroot\app\actions\order.js" />
     <Content Include="wwwroot\app\actions\account.js" />
     <Content Include="wwwroot\app\actions\auth.js" />
     <Content Include="wwwroot\app\actions\basket.js" />
@@ -3099,6 +3100,7 @@
     <Content Include="wwwroot\app\containers\basket.js" />
     <Content Include="wwwroot\app\containers\topMenu.js" />
     <Content Include="wwwroot\app\index.jsx" />
+    <Content Include="wwwroot\app\reducers\order.js" />
     <Content Include="wwwroot\app\reducers\account.js" />
     <Content Include="wwwroot\app\reducers\basket.js" />
     <Content Include="wwwroot\app\reducers\auth.js" />

@@ -1,6 +1,7 @@
 ﻿import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { fetchAddress } from '../../actions/account'
+import { confirmOrder } from '../../actions/order'
 import OrderConfirmation from '../../components/checkout/OrderConfirmation.jsx'
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
         authenticated: state.auth.name && true,
         billing: state.account.billing,
         shipping: state.account.shipping,
-        basket: state.basket
+        basket: state.basket,
+        loading: state.order.orderConfirming
     }
 }
 
@@ -26,6 +28,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchBilling: () => {
             dispatch(fetchAddress('billing'));
+        },
+        confirmOrder: (order) => {
+            dispatch(confirmOrder(order));
         }
     }
 };
