@@ -13,8 +13,7 @@ const shippingMethods = [{
 
 const paymentMethods = [{
     key: 'belpost',
-    name: 'Наложенный платеж',
-    shippingMethods: ['belpost']
+    name: 'Наложенный платеж'
 },
 {
     key: 'card',

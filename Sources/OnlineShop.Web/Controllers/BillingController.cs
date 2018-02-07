@@ -39,7 +39,8 @@ namespace OnlineShop.Web.Controllers
                 PostalCode = model.PostCode,
                 Region = model.City,
                 Name = model.Name,
-                AddressType = AddressType.Billing
+                AddressType = AddressType.Billing,
+                CountryCode = "BY"
             };
 
             this.CheckoutManager.Customer.SaveBillToAddress(address);

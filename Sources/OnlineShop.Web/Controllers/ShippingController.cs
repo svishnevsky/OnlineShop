@@ -36,7 +36,8 @@ namespace OnlineShop.Web.Controllers
                 Phone = model.Phone,
                 PostalCode = model.PostCode,
                 Region = model.City,
-                Name = model.Name
+                Name = model.Name,
+                CountryCode = "BY"
             };
 
             this.CheckoutManager.Customer.SaveShipToAddress(address);

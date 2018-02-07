@@ -1,5 +1,6 @@
 ﻿using Merchello.Core;
 using Merchello.Core.Checkout;
+using Merchello.Core.Gateways;
 using Merchello.Core.Gateways.Shipping;
 using Merchello.Web;
 using Merchello.Web.Factories;
@@ -14,8 +15,8 @@ namespace OnlineShop.Web.Controllers
     {
         private static readonly IDictionary<string, object> shippingProvidersMap = new Dictionary<string, object>
         {
-            {"Belpost", new { name = "Белпочта",  term = "2-5 дня", key = "belpost" } },
-            {"Carrier", new { name = "Курьер",  term = "1-3 дня", key = "carrier" }  }
+            {"belpost", new { name = "Белпочта",  term = "2-5 дня", key = "belpost" } },
+            {"carrier", new { name = "Курьер",  term = "1-3 дня", key = "carrier" }  }
         };
 
         private ICheckoutManagerBase checkoutManager;
@@ -31,6 +32,8 @@ namespace OnlineShop.Web.Controllers
                 return this.checkoutManager;
             }
         }
+
+        protected IGatewayContext GatewayContext => MerchelloContext.Current.Gateways;
 
         [HttpGet]
         [ActionName("ShippingProviders")]
@@ -49,7 +52,17 @@ namespace OnlineShop.Web.Controllers
         [ActionName("confirmOrder")]
         public IHttpActionResult ConfirmCheckout(CheckoutModel model)
         {
+            var shipment = CurrentCustomer.Basket().PackageBasket(this.CheckoutManager.Customer.GetShipToAddress()).FirstOrDefault();
+            var quoteAttemp = GatewayContext.Shipping.GetAllActivatedProviders()
+                .Cast<ShippingGatewayProviderBase>()
+                .SelectMany(p => p.GetShippingGatewayMethodsForShipment(shipment))
+                .First(m => m.ShipMethod.Name == model.ShippingMethod).QuoteShipment(shipment);
+            if (!quoteAttemp.Success)
+            {
+                return BadRequest();
+            }
 
+            this.CheckoutManager.Shipping.SaveShipmentRateQuote(quoteAttemp.Result);
             return Ok();
         }
     }
