@@ -13,11 +13,11 @@ namespace OnlineShop.Web.Controllers
         [Authorize]
         public IHttpActionResult GetShipping()
         {
-            var address = this.CheckoutManager.Customer.GetShipToAddress();
+            var address = ((ICustomer)CustomerContext.CurrentCustomer).DefaultCustomerAddress(AddressType.Shipping);
             var member = Members.GetCurrentMember();
             return Ok(new
             {
-                name = address?.Name ?? $"{member.GetPropertyValue<string>("firstName")} {member.GetPropertyValue<string>("lastName")}".Trim(),
+                name = address?.FullName ?? $"{member.GetPropertyValue<string>("firstName")} {member.GetPropertyValue<string>("lastName")}".Trim(),
                 city = address?.Region,
                 address = address?.Address1,
                 phone = address?.Phone,

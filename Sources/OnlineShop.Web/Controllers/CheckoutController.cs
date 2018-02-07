@@ -5,7 +5,6 @@ using Merchello.Core.Gateways.Shipping;
 using Merchello.Web;
 using Merchello.Web.Factories;
 using OnlineShop.Web.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
@@ -13,12 +12,6 @@ namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController
     {
-        private static readonly IDictionary<string, object> shippingProvidersMap = new Dictionary<string, object>
-        {
-            {"belpost", new { name = "Белпочта",  term = "2-5 дня", key = "belpost" } },
-            {"carrier", new { name = "Курьер",  term = "1-3 дня", key = "carrier" }  }
-        };
-
         private ICheckoutManagerBase checkoutManager;
         protected ICheckoutManagerBase CheckoutManager
         {
@@ -35,19 +28,6 @@ namespace OnlineShop.Web.Controllers
 
         protected IGatewayContext GatewayContext => MerchelloContext.Current.Gateways;
 
-        [HttpGet]
-        [ActionName("ShippingProviders")]
-        public IHttpActionResult GetShippingProviders()
-        {
-            var providers = MerchelloContext.Current.Gateways.Shipping.GetAllActivatedProviders()
-                .Cast<ShippingGatewayProviderBase>()
-                .SelectMany(x => x.ShipMethods)
-                .Where(x => shippingProvidersMap.ContainsKey(x.Name))
-                .Select(x => shippingProvidersMap[x.Name])
-                .ToList();
-            return Ok(new { providers = providers });
-        }
-
         [HttpPost]
         [ActionName("confirmOrder")]
         public IHttpActionResult ConfirmCheckout(CheckoutModel model)
@@ -62,8 +42,48 @@ namespace OnlineShop.Web.Controllers
                 return BadRequest();
             }
 
+            this.CheckoutManager.Shipping.ClearShipmentRateQuotes();
             this.CheckoutManager.Shipping.SaveShipmentRateQuote(quoteAttemp.Result);
-            return Ok();
+
+            this.CheckoutManager.Payment.ClearPaymentMethod();
+            var paymentMethod = this.CheckoutManager.Payment.GetPaymentGatewayMethods()
+                .First(p => p.PaymentMethod.Name == model.PaymentMethod);
+            this.CheckoutManager.Payment.SavePaymentMethod(paymentMethod.PaymentMethod);
+            if (!this.CheckoutManager.Payment.IsReadyToInvoice())
+            {
+                return BadRequest();
+            }
+
+            var result = this.CheckoutManager.Payment.AuthorizePayment(paymentMethod.PaymentMethod.Key);
+            if (!result.Payment.Success)
+            {
+                return BadRequest();
+            }
+
+            this.CurrentCustomer.Basket().Empty();
+
+            if (model.PaymentMethod == "belpost")
+            {
+                result = result.Invoice.CapturePayment(result.Payment.Result, paymentMethod, result.Invoice.Total);
+            }
+
+            return Ok(new
+            {
+                number = result.Invoice.InvoiceNumber,
+                total = result.Invoice.Total,
+                status = result.Invoice.InvoiceStatus.Name.ToLower(),
+                paymentMethod = paymentMethod.PaymentMethod.Name,
+                shippingMethod = quoteAttemp.Result.ShipMethod.Name,
+                items = result.Invoice.Items
+                    .Where(x => x.LineItemType == LineItemType.Product)
+                    .Select(x => new
+                    {
+                        key = x.Key,
+                        name = x.Name,
+                        price = x.Price,
+                        quantity = x.Quantity
+                    })
+            });
         }
     }
 }

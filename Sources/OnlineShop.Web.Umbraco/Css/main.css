@@ -2099,6 +2099,16 @@ select {
                 top: 1px;
             }
 
+    .checkout .tab_content p {
+        padding-top: 10px;
+    }
+
+    .checkout .tab_content .g_black {
+        margin: 20px 0;
+        display: inline-block;
+        width: 340px;
+    }
+
 .card_info .options li {
     float: left;
     width: 55px;

@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
         billing: state.account.billing,
         shipping: state.account.shipping,
         basket: state.basket,
-        loading: state.order.orderConfirming
+        loading: state.order.orderConfirming,
+        order: state.order.order
     }
 }
 
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         confirmOrder: (order) => {
             dispatch(confirmOrder(order));
+        },
+        goToReceipt: () => {
+            dispatch(push('/Receipt'));
         }
     }
 };

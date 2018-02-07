@@ -51,8 +51,10 @@ export default class OrderConfirmation extends Checkout {
             shippingMethod: this.props.basket.shippingMethod ? this.props.basket.shippingMethod : {},
             loading: this.props.loading
         };
-        return super.renderContent(
-            <div className='simplecheckout-methods-table two'>
+
+        return super.renderContent(this.props.order
+            ? this.renderOrder(this.props.order)
+            : <div className='simplecheckout-methods-table two'>
                 <form className='form checkout' onSubmit={this.handleSubmit}>
                     <div className='method-container half'>
                         <h2>Плательщик:</h2>
@@ -112,10 +114,17 @@ export default class OrderConfirmation extends Checkout {
                     </table>
 
                     <a className='g_black back' onClick={this.back.bind(this)}>Назад <i className='ico'></i></a>
-                    <button className='g_black next'>Подтвердить <i className='ico'></i></button>
+                    {!model.basket.items.length ? null : <button className='g_black next'>Подтвердить <i className='ico'></i></button>}
                     <div className='clearfix'></div>
                 </form>
             </div>
         );
+    }
+
+    renderOrder(order) {
+        return (<div>
+            <p>Заказ <Link to={`/account/orders/${order.number}`} className='burgundy'>№{order.number}</Link> на сумму {formatPrice(order.total)} {order.status === 'paid' ? ' Оплата при получении.' : null}</p>
+            <Link to='/catalog' className='g_black'>Вернуться к покупкам <i className='ico'></i></Link>
+        </div>);
     }
 }
