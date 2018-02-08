@@ -153,6 +153,10 @@ export default class OrderConfirmation extends Checkout {
 
                 <input type='hidden' name='wsb_shipping_name' value={this.props.basket.shippingMethod.name} />
                 <input type='hidden' name='wsb_total' value={order.total} />
+                <input type='hidden' name='wsb_email' value={order.customerEmail} />
+                <input type='hidden' name='wsb_return_url' value={order.paymentCallbaclUrl} />
+                <input type='hidden' name='wsb_cancel_return_url' value={order.paymentCallbaclUrl} />
+                <input type='hidden' name='wsb_notify_url' value={order.paymentCallbaclUrl} />
                 <button className='g_black center'>Оплатить <i className='ico'></i></button>
             </form>
         </div>);

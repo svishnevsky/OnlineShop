@@ -71,6 +71,8 @@ namespace OnlineShop.Web.Controllers
                 result = result.Invoice.CapturePayment(result.Payment.Result, paymentMethod, result.Invoice.Total);
             }
 
+            Notification.Trigger("OrderConfirmation", result, new[] { Members.CurrentUserName });
+
             var seed = Guid.NewGuid().ToString("N");
             var storeId = ConfigurationManager.AppSettings["webpay.storeId"];
             var mode = ConfigurationManager.AppSettings["webpay.mode"];
@@ -88,12 +90,14 @@ namespace OnlineShop.Web.Controllers
                     shippingMethod = quoteAttemp.Result.ShipMethod.Name,
                     receiver = shipment.ToName,
                     receiverAddress = $"{shipment.ToAddress1}, {shipment.ToRegion}, {shipment.ToPostalCode}",
+                    customerEmail = Members.CurrentUserName,
                     storeId = storeId,
                     seed = seed,
                     currency = currency,
                     signature = string.Join("", hasher.ComputeHash(Encoding.UTF8.GetBytes($"{seed}{storeId}{result.Invoice.InvoiceNumber}{mode}{currency}{result.Invoice.Total.ToString("0.00")}{secret}")).Select(x => x.ToString("x2"))),
                     mode = mode,
                     paymentUrl = paymentUrl,
+                    paymentCallbaclUrl = this.Request.RequestUri.OriginalString.Replace("confirmOrder", "paymentCallback"),
                     items = result.Invoice.Items
                         .Where(x => x.LineItemType == LineItemType.Product)
                         .Select(x => new
@@ -107,6 +111,35 @@ namespace OnlineShop.Web.Controllers
 
                 return Ok(response);
             }
+        }
+
+        [HttpGet]
+        [ActionName("paymentCallback")]
+        public IHttpActionResult PaymentCallback([FromUri]int wsb_order_num, [FromUri] string wsb_tid)
+        {
+            this.CheckPayment(wsb_order_num, wsb_tid);
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        [ActionName("paymentCallback")]
+        public IHttpActionResult PaymentNotify(WebPayNotification notification)
+        {
+            var invoice = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(notification.site_order_id);
+            var payment = invoice.Payments().First();
+            invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), notification.amount);
+            return Ok();
+        }
+
+        private void CheckPayment(int invoiceNumber, string transactionId)
+        {
+            var invoce = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(invoiceNumber);
+            if (invoce.InvoiceStatus.Name != "Unpaid")
+            {
+                return;
+            }
+
+
         }
     }
 }
