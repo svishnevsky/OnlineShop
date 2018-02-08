@@ -13,8 +13,10 @@ namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController : UmbracoApiController
     {
-        protected MerchelloHelper Helper => new MerchelloHelper();
-        protected ICustomerContext CustomerContext => PluggableObjectHelper.GetInstance<CustomerContextBase>("CustomerContext", UmbracoContext);
+        private MerchelloHelper helper;
+        private ICustomerContext customerContext;
+        protected MerchelloHelper Helper { get { return helper ?? (helper = new MerchelloHelper()); } }
+        protected ICustomerContext CustomerContext { get { return customerContext ?? (customerContext = PluggableObjectHelper.GetInstance<CustomerContextBase>("CustomerContext", UmbracoContext)); } }
         protected ICustomerBase CurrentCustomer =>  this.CustomerContext.CurrentCustomer;
 
         public IHttpActionResult NotValid()

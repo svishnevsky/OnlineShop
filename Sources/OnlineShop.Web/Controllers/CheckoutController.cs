@@ -4,6 +4,7 @@ using Merchello.Core.Gateways;
 using Merchello.Core.Gateways.Shipping;
 using Merchello.Web;
 using Merchello.Web.Factories;
+using Newtonsoft.Json;
 using OnlineShop.Web.Models;
 using System;
 using System.Configuration;
@@ -16,6 +17,8 @@ namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController
     {
+        private static readonly string[] SuccessPaymentTYpes = new[] { "Completed", "Authorized", "Recurrent" };
+
         private ICheckoutManagerBase checkoutManager;
         protected ICheckoutManagerBase CheckoutManager
         {
@@ -33,7 +36,7 @@ namespace OnlineShop.Web.Controllers
         protected IGatewayContext GatewayContext => MerchelloContext.Current.Gateways;
 
         [HttpPost]
-        [ActionName("confirmOrder")]
+        [ActionName("ConfirmOrder")]
         public IHttpActionResult ConfirmCheckout(CheckoutModel model)
         {
             var shipment = CurrentCustomer.Basket().PackageBasket(this.CheckoutManager.Customer.GetShipToAddress()).FirstOrDefault();
@@ -57,7 +60,7 @@ namespace OnlineShop.Web.Controllers
             {
                 return BadRequest();
             }
-            
+
             var result = this.CheckoutManager.Payment.AuthorizePayment(paymentMethod.PaymentMethod.Key);
             if (!result.Payment.Success)
             {
@@ -114,27 +117,43 @@ namespace OnlineShop.Web.Controllers
         }
 
         [HttpGet]
-        [ActionName("paymentCallback")]
-        public IHttpActionResult PaymentCallback([FromUri]int wsb_order_num, [FromUri] string wsb_tid)
+        [ActionName("PaymentCallback")]
+        public IHttpActionResult PaymentCallback(int wsb_order_num, string wsb_tid = null)
         {
             this.CheckPayment(wsb_order_num, wsb_tid);
-            return Redirect("/");
+            return Redirect($"{this.Request.RequestUri.Scheme}://{this.Request.RequestUri.Host}");
         }
 
         [HttpPost]
-        [ActionName("paymentCallback")]
+        [ActionName("PaymentCallback")]
         public IHttpActionResult PaymentNotify(WebPayNotification notification)
         {
+            string signature = null;
+            using (var hasher = MD5.Create())
+            {
+                signature = string.Join("", hasher.ComputeHash(Encoding.UTF8.GetBytes($"{notification.batch_timestamp}{notification.currency_id}{notification.amount}{notification.payment_method}{notification.order_id}{notification.site_order_id}{notification.transaction_id}{notification.payment_type}{notification.rrn}{ConfigurationManager.AppSettings["webpay.secret"]}")).Select(x => x.ToString("x2")));
+            }
+
+            if (notification.wsb_signature != signature)
+            {
+                Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{JsonConvert.SerializeObject(notification)}]\nSignature - {signature}");
+                return BadRequest();
+            }
+
             var invoice = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(notification.site_order_id);
-            var payment = invoice.Payments().First();
-            invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), notification.amount);
+            if (invoice.InvoiceStatus.Name == "Unpaid" && SuccessPaymentTYpes.Contains(notification.payment_type))
+            {
+                var payment = invoice.Payments().First();
+                invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(notification.amount));
+            }
+
             return Ok();
         }
 
         private void CheckPayment(int invoiceNumber, string transactionId)
         {
-            var invoce = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(invoiceNumber);
-            if (invoce.InvoiceStatus.Name != "Unpaid")
+            var invoice = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(invoiceNumber);
+            if (invoice.InvoiceStatus.Name != "Unpaid")
             {
                 return;
             }

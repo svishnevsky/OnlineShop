@@ -5,8 +5,13 @@
     Layout = "Layout.cshtml";
     var mediaId = Umbraco.Field("banner").ToString();
     var image = Umbraco.TypedMedia(mediaId);
-    var merchelloHelper = new MerchelloHelper();
-    var collections = merchelloHelper.Collections.Product.GetRootLevelCollections().Select(c => new { key = c.Key, name = c.Name });
+    MerchelloHelper merchelloHelper = null;
+    try
+    {
+        merchelloHelper = new MerchelloHelper();
+    }
+    catch { }
+    var collections = merchelloHelper?.Collections.Product.GetRootLevelCollections().Select(c => new { key = c.Key, name = c.Name }).Cast<object>().ToArray() ?? new object[0];
 }
 
 <div id="app-root"></div>
