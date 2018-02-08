@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Web.Umbraco", "Sources\OnlineShop.Web.Umbraco\OnlineShop.Web.Umbraco.csproj", "{1E74691B-1678-4DE9-B471-9466455334D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Web", "Sources\OnlineShop.Web\OnlineShop.Web.csproj", "{5AA6F168-96E6-4380-91AE-9B61BEFC69B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Web.Tests", "Sources\OnlineShop.Web.Tests\OnlineShop.Web.Tests.csproj", "{588A8C3D-797A-41B7-8718-DC317274A532}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{5AA6F168-96E6-4380-91AE-9B61BEFC69B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA6F168-96E6-4380-91AE-9B61BEFC69B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA6F168-96E6-4380-91AE-9B61BEFC69B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{588A8C3D-797A-41B7-8718-DC317274A532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{588A8C3D-797A-41B7-8718-DC317274A532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{588A8C3D-797A-41B7-8718-DC317274A532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{588A8C3D-797A-41B7-8718-DC317274A532}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {369C71BE-D843-493B-AE09-B53DD6D04BC2}
 	EndGlobalSection
 EndGlobal

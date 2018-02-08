@@ -122,9 +122,39 @@ export default class OrderConfirmation extends Checkout {
     }
 
     renderOrder(order) {
-        return (<div>
-            <p>Заказ <Link to={`/account/orders/${order.number}`} className='burgundy'>№{order.number}</Link> на сумму {formatPrice(order.total)} {order.status === 'paid' ? ' Оплата при получении.' : null}</p>
+        return order.status === 'paid' ? this.renderPaid(order) : this.renderUnpaid(order);
+    }
+
+    renderPaid(order) {
+        return (<div className='invoice'>
+            <p>Заказ <Link to={`/account/orders/${order.number}`} className='burgundy'>№{order.number}</Link> на сумму {formatPrice(order.total)} успешно сформирован. Оплата при получении</p>
             <Link to='/catalog' className='g_black'>Вернуться к покупкам <i className='ico'></i></Link>
+        </div>);
+    }
+
+    renderUnpaid(order) {
+        return (<div className='invoice'>
+            <p>Заказ №{order.number} на сумму {formatPrice(order.total)} успешно сформирован. Для оплаты вы будете перенаправлены на сервис безопасных платежей Webpay. Интернет-магазин «IRENE ITALIANO» BOUTIQUE BIJOUTERIE не хранит и не обрабатывает ваши платежные данные.</p>
+            <form method='POST' action={order.paymentUrl}>
+                <input type='hidden' name='*scart' />
+                <input type='hidden' name='wsb_storeid' value={order.storeId} />
+                <input type='hidden' name='wsb_order_num' value={order.number} />
+                <input type='hidden' name='wsb_currency_id' value={order.currency} />
+                <input type='hidden' name='wsb_version' value='2' />
+                <input type='hidden' name='wsb_seed' value={order.seed} />
+                <input type='hidden' name='wsb_signature' value={order.signature} />
+                <input type='hidden' name='wsb_test' value={order.mode} />
+                <input type='hidden' name='wsb_customer_name' value={order.receiver} />
+                <input type='hidden' name='wsb_customer_address' value={order.receiverAddress} />
+
+                {order.items.map((x, i) => <input key={i} type='hidden' name={`wsb_invoice_item_name[${i}]`} value={x.name} />)}
+                {order.items.map((x, i) => <input key={i} type='hidden' name={`wsb_invoice_item_quantity[${i}]`} value={x.quantity} />)}
+                {order.items.map((x, i) => <input key={i} type='hidden' name={`wsb_invoice_item_price[${i}]`} value={x.price} />)}
+
+                <input type='hidden' name='wsb_shipping_name' value={this.props.basket.shippingMethod.name} />
+                <input type='hidden' name='wsb_total' value={order.total} />
+                <button className='g_black center'>Оплатить <i className='ico'></i></button>
+            </form>
         </div>);
     }
 }

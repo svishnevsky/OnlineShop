@@ -5,7 +5,11 @@ using Merchello.Core.Gateways.Shipping;
 using Merchello.Web;
 using Merchello.Web.Factories;
 using OnlineShop.Web.Models;
+using System;
+using System.Configuration;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 
 namespace OnlineShop.Web.Controllers
@@ -53,7 +57,7 @@ namespace OnlineShop.Web.Controllers
             {
                 return BadRequest();
             }
-
+            
             var result = this.CheckoutManager.Payment.AuthorizePayment(paymentMethod.PaymentMethod.Key);
             if (!result.Payment.Success)
             {
@@ -67,23 +71,42 @@ namespace OnlineShop.Web.Controllers
                 result = result.Invoice.CapturePayment(result.Payment.Result, paymentMethod, result.Invoice.Total);
             }
 
-            return Ok(new
+            var seed = Guid.NewGuid().ToString("N");
+            var storeId = ConfigurationManager.AppSettings["webpay.storeId"];
+            var mode = ConfigurationManager.AppSettings["webpay.mode"];
+            var secret = ConfigurationManager.AppSettings["webpay.secret"];
+            var paymentUrl = ConfigurationManager.AppSettings["webpay.paymentUrl"];
+            var currency = "BYN";
+            using (var hasher = SHA1.Create())
             {
-                number = result.Invoice.InvoiceNumber,
-                total = result.Invoice.Total,
-                status = result.Invoice.InvoiceStatus.Name.ToLower(),
-                paymentMethod = paymentMethod.PaymentMethod.Name,
-                shippingMethod = quoteAttemp.Result.ShipMethod.Name,
-                items = result.Invoice.Items
-                    .Where(x => x.LineItemType == LineItemType.Product)
-                    .Select(x => new
-                    {
-                        key = x.Key,
-                        name = x.Name,
-                        price = x.Price,
-                        quantity = x.Quantity
-                    })
-            });
+                var response = new
+                {
+                    number = result.Invoice.InvoiceNumber,
+                    total = result.Invoice.Total.ToString("0.00"),
+                    status = result.Invoice.InvoiceStatus.Name.ToLower(),
+                    paymentMethod = paymentMethod.PaymentMethod.Name,
+                    shippingMethod = quoteAttemp.Result.ShipMethod.Name,
+                    receiver = shipment.ToName,
+                    receiverAddress = $"{shipment.ToAddress1}, {shipment.ToRegion}, {shipment.ToPostalCode}",
+                    storeId = storeId,
+                    seed = seed,
+                    currency = currency,
+                    signature = string.Join("", hasher.ComputeHash(Encoding.UTF8.GetBytes($"{seed}{storeId}{result.Invoice.InvoiceNumber}{mode}{currency}{result.Invoice.Total.ToString("0.00")}{secret}")).Select(x => x.ToString("x2"))),
+                    mode = mode,
+                    paymentUrl = paymentUrl,
+                    items = result.Invoice.Items
+                        .Where(x => x.LineItemType == LineItemType.Product)
+                        .Select(x => new
+                        {
+                            key = x.Key,
+                            name = x.Name,
+                            price = x.Price.ToString("0.00"),
+                            quantity = x.Quantity
+                        })
+                };
+
+                return Ok(response);
+            }
         }
     }
 }
