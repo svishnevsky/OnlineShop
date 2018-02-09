@@ -247,6 +247,7 @@
     <Compile Include="Models\NewUser.cs" />
     <Compile Include="Models\RestorePasswordModel.cs" />
     <Compile Include="Models\WebPayNotification.cs" />
+    <Compile Include="Models\WebPayTransactionResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

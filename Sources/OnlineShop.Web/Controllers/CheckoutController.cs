@@ -2,22 +2,28 @@
 using Merchello.Core.Checkout;
 using Merchello.Core.Gateways;
 using Merchello.Core.Gateways.Shipping;
+using Merchello.Core.Models;
 using Merchello.Web;
 using Merchello.Web.Factories;
 using Newtonsoft.Json;
 using OnlineShop.Web.Models;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Xml.Serialization;
 
 namespace OnlineShop.Web.Controllers
 {
     public partial class ClientController
     {
-        private static readonly string[] SuccessPaymentTYpes = new[] { "Completed", "Authorized", "Recurrent" };
+        private static readonly string[] SuccessPaymentTypes = new[] { "1", "4", "10" };
 
         private ICheckoutManagerBase checkoutManager;
         protected ICheckoutManagerBase CheckoutManager
@@ -118,9 +124,13 @@ namespace OnlineShop.Web.Controllers
 
         [HttpGet]
         [ActionName("PaymentCallback")]
-        public IHttpActionResult PaymentCallback(int wsb_order_num, string wsb_tid = null)
+        public async Task<IHttpActionResult> PaymentCallback(int wsb_order_num, string wsb_tid = null)
         {
-            this.CheckPayment(wsb_order_num, wsb_tid);
+            if (!string.IsNullOrEmpty(wsb_tid))
+            {
+                await this.CheckPayment(wsb_order_num, wsb_tid);
+            }
+
             return Redirect($"{this.Request.RequestUri.Scheme}://{this.Request.RequestUri.Host}");
         }
 
@@ -136,21 +146,24 @@ namespace OnlineShop.Web.Controllers
 
             if (notification.wsb_signature != signature)
             {
-                Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{JsonConvert.SerializeObject(notification)}]\nSignature - {signature}");
+                Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{0}]\nSignature - {1}", () => JsonConvert.SerializeObject(notification), () => signature);
                 return BadRequest();
             }
 
             var invoice = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(notification.site_order_id);
-            if (invoice.InvoiceStatus.Name == "Unpaid" && SuccessPaymentTYpes.Contains(notification.payment_type))
+            if (invoice.InvoiceStatus.Name == "Unpaid" && SuccessPaymentTypes.Contains(notification.payment_type))
             {
                 var payment = invoice.Payments().First();
-                invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(notification.amount));
+                invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(notification.amount, CultureInfo.InvariantCulture));
+                var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {notification.transaction_id}\nOrderNumber: {notification.order_id}\nrrn: {notification.rrn}\nPaymentMethod: {notification.payment_method}");
+                this.CheckoutManager.Context.Services.NoteService.Save(note);
+                Logger.Debug(this.GetType(), "Invoice {0} paid.", () => invoice.InvoiceNumber);
             }
 
             return Ok();
         }
 
-        private void CheckPayment(int invoiceNumber, string transactionId)
+        private async Task CheckPayment(int invoiceNumber, string transactionId)
         {
             var invoice = this.CheckoutManager.Context.Services.InvoiceService.GetByInvoiceNumber(invoiceNumber);
             if (invoice.InvoiceStatus.Name != "Unpaid")
@@ -158,7 +171,44 @@ namespace OnlineShop.Web.Controllers
                 return;
             }
 
+            using (var client = new HttpClient())
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, ConfigurationManager.AppSettings["webpay.apiUrl"]);
+                request.Content = new FormUrlEncodedContent(new[] {
+                    new KeyValuePair<string, string>("*API", ""),
+                    new KeyValuePair<string, string>("API_XML_REQUEST", string.Format(ApiRequestFormat, ConfigurationManager.AppSettings["webpay.username"], ConfigurationManager.AppSettings["webpay.password"], transactionId))
+                });
+                var response = await client.SendAsync(request);
+                var serializer = new XmlSerializer(typeof(WebPayTransactionResponse));
+                var stream = await response.Content.ReadAsStreamAsync();
+                var transactionInfo = serializer.Deserialize(stream) as WebPayTransactionResponse;
+                if (transactionInfo.Status == "success")
+                {
+                    if (invoice.InvoiceStatus.Name == "Unpaid" && SuccessPaymentTypes.Contains(transactionInfo.Fields.payment_type))
+                    {
+                        string signature = null;
+                        using (var hasher = MD5.Create())
+                        {
+                            signature = string.Join("", hasher.ComputeHash(Encoding.UTF8.GetBytes($"{transactionInfo.Fields.transaction_id}{transactionInfo.Fields.batch_timestamp}{transactionInfo.Fields.currency_id}{transactionInfo.Fields.amount}{transactionInfo.Fields.payment_method}{transactionInfo.Fields.payment_type}{transactionInfo.Fields.order_id}{transactionInfo.Fields.rrn}{ConfigurationManager.AppSettings["webpay.secret"]}")).Select(x => x.ToString("x2")));
+                        }
 
+                        if (transactionInfo.Fields.wsb_signature != signature)
+                        {
+                            Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{0}]\nSignature - {1}", () => JsonConvert.SerializeObject(transactionInfo), () => signature);
+                        }
+                        else
+                        {
+                            var payment = invoice.Payments().First();
+                            invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(transactionInfo.Fields.amount, CultureInfo.InvariantCulture));
+                            var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {transactionInfo.Fields.transaction_id}\nOrderNumber: {transactionInfo.Fields.order_id}\nrrn: {transactionInfo.Fields.rrn}\nPaymentMethod: {transactionInfo.Fields.payment_method}");
+                            this.CheckoutManager.Context.Services.NoteService.Save(note);
+                            Logger.Debug(this.GetType(), "Invoice {0} paid.", () => invoice.InvoiceNumber);
+                        }
+                    }
+                }
+            }
         }
+
+        private const string ApiRequestFormat = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?><wsb_api_request><command>get_transaction</command><authorization><username>{0}</username><password>{1}</password></authorization><fields><transaction_id>{2}</transaction_id></fields></wsb_api_request>";
     }
 }

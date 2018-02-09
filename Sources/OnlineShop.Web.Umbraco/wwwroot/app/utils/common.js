@@ -1,5 +1,6 @@
 ﻿export const formatPrice = (price) => {
-    var parts = (price + '').split('.');
+    var priceStr = price + '';
+    var parts = priceStr.split(priceStr.indexOf('.') >= 0 ? '.' : ',');
     var major = `${parts[0]}р.`;
     if (parts.length === 1) {
         parts[1] = 0;
