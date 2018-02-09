@@ -14,6 +14,7 @@ import payment from './containers/checkout/payment'
 import orderConfirmation from './containers/checkout/orderConfirmation'
 import personal from './containers/account/personal'
 import password from './containers/account/password'
+import orders from './containers/account/orders'
 
 export default (
     <Switch>
@@ -32,5 +33,6 @@ export default (
         <Route exact path='/checkout/confirmation' component={orderConfirmation} />
         <Route exact path='/account' component={personal} />
         <Route exact path='/account/password' component={password} />
+        <Route exact path='/account/orders' component={orders} />
     </Switch>
 );

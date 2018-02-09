@@ -3056,6 +3056,7 @@
     <Content Include="wwwroot\app\actions\options.js" />
     <Content Include="wwwroot\app\actions\types.js" />
     <Content Include="wwwroot\app\components\account\Account.jsx" />
+    <Content Include="wwwroot\app\components\account\Orders.jsx" />
     <Content Include="wwwroot\app\components\account\Password.jsx" />
     <Content Include="wwwroot\app\components\account\Personal.jsx" />
     <Content Include="wwwroot\app\components\App.jsx" />
@@ -3081,6 +3082,7 @@
     <Content Include="wwwroot\app\components\info\UserAgreement.jsx" />
     <Content Include="wwwroot\app\components\TopMenu.jsx" />
     <Content Include="wwwroot\app\containers\account\password.js" />
+    <Content Include="wwwroot\app\containers\account\orders.js" />
     <Content Include="wwwroot\app\containers\account\personal.js" />
     <Content Include="wwwroot\app\containers\auth\auth.js" />
     <Content Include="wwwroot\app\containers\auth\forgot.js" />

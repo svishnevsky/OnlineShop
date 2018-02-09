@@ -33,3 +33,33 @@ export function confirmOrder(order) {
             });
     }
 }
+
+function updateOrders(orders) {
+    return {
+        type: types.ORDERS_RECEIVED,
+        orders
+    }
+}
+
+function loadOrders() {
+    return {
+        type: types.ORDERS_LOADING
+    }
+}
+
+export function fetchOrders() {
+    return function (dispatch) {
+        dispatch(loadOrders());
+        return fetch(`/umbraco/api/client/orders`, { method: 'GET', headers: { 'Accept': 'application/json' }, credentials: "same-origin" })
+            .then(response => {
+                response.json()
+                    .then(data => {
+                        if (!response.ok) {
+                            return;
+                        } else {
+                            dispatch(updateOrders(data.orders));
+                        }
+                    });
+            });
+    }
+}

@@ -146,7 +146,7 @@ namespace OnlineShop.Web.Controllers
 
             if (notification.wsb_signature != signature)
             {
-                Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{0}]\nSignature - {1}", () => JsonConvert.SerializeObject(notification), () => signature);
+                Logger.Warn(this.GetType(), $"Payment notification signatures aren't match., Model [{0}], Signature - {1}", () => JsonConvert.SerializeObject(notification), () => signature);
                 return BadRequest();
             }
 
@@ -155,7 +155,7 @@ namespace OnlineShop.Web.Controllers
             {
                 var payment = invoice.Payments().First();
                 invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(notification.amount, CultureInfo.InvariantCulture));
-                var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {notification.transaction_id}\nOrderNumber: {notification.order_id}\nrrn: {notification.rrn}\nPaymentMethod: {notification.payment_method}");
+                var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {notification.transaction_id}, OrderNumber: {notification.order_id}, rrn: {notification.rrn}, PaymentMethod: {notification.payment_method}");
                 this.CheckoutManager.Context.Services.NoteService.Save(note);
                 Logger.Debug(this.GetType(), "Invoice {0} paid.", () => invoice.InvoiceNumber);
             }
@@ -194,13 +194,13 @@ namespace OnlineShop.Web.Controllers
 
                         if (transactionInfo.Fields.wsb_signature != signature)
                         {
-                            Logger.Warn(this.GetType(), $"Payment notification signatures aren't match.\nModel [{0}]\nSignature - {1}", () => JsonConvert.SerializeObject(transactionInfo), () => signature);
+                            Logger.Warn(this.GetType(), $"Payment notification signatures aren't match., Model [{0}], Signature - {1}", () => JsonConvert.SerializeObject(transactionInfo), () => signature);
                         }
                         else
                         {
                             var payment = invoice.Payments().First();
                             invoice.CapturePayment(payment, this.GatewayContext.Payment.GetPaymentGatewayMethodByKey(payment.PaymentMethodKey.Value), Convert.ToDecimal(transactionInfo.Fields.amount, CultureInfo.InvariantCulture));
-                            var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {transactionInfo.Fields.transaction_id}\nOrderNumber: {transactionInfo.Fields.order_id}\nrrn: {transactionInfo.Fields.rrn}\nPaymentMethod: {transactionInfo.Fields.payment_method}");
+                            var note = this.CheckoutManager.Context.Services.NoteService.CreateNote(invoice.Key, EntityType.Invoice, $"TransactionId: {transactionInfo.Fields.transaction_id}, OrderNumber: {transactionInfo.Fields.order_id}, rrn: {transactionInfo.Fields.rrn}, PaymentMethod: {transactionInfo.Fields.payment_method}");
                             this.CheckoutManager.Context.Services.NoteService.Save(note);
                             Logger.Debug(this.GetType(), "Invoice {0} paid.", () => invoice.InvoiceNumber);
                         }

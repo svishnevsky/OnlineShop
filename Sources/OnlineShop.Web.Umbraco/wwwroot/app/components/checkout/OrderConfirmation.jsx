@@ -127,7 +127,7 @@ export default class OrderConfirmation extends Checkout {
 
     renderPaid(order) {
         return (<div className='invoice'>
-            <p>Заказ <Link to={`/account/orders/${order.number}`} className='burgundy'>№{order.number}</Link> на сумму {formatPrice(order.total)} успешно сформирован. Оплата при получении</p>
+            <p>Заказ №{order.number} на сумму {formatPrice(order.total)} успешно сформирован. Оплата при получении</p>
             <Link to='/catalog' className='g_black'>Вернуться к покупкам <i className='ico'></i></Link>
         </div>);
     }

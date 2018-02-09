@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BlockUi from 'react-block-ui'
 
 const tabs = [
-    { path: '/account/history', name: 'История покупок' },
+    { path: '/account/orders', name: 'История покупок' },
     { path: '/account', name: 'Личная информация' },
     { path: '/account/password', name: 'Смена пароля' }
 ];

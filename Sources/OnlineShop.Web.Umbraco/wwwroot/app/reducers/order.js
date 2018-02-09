@@ -9,6 +9,15 @@ const order = (state = {}, action) => {
                 orderConfirming: false,
                 order: action.order
             });
+        case types.ORDERS_LOADING:
+            return Object.assign({}, state, {
+                ordersLoading: true
+            });
+        case types.ORDERS_RECEIVED:
+            return Object.assign({}, state, {
+                ordersLoading: false,
+                orders: action.orders
+            });
         default:
             return state;
     }
